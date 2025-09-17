@@ -4,13 +4,12 @@
     class="min-h-screen bg-gray-50 dark:bg-gray-900/50 py-20"
   >
     <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
           Meus Projetos
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-          Uma seleção dos meus principais trabalhos em desenvolvimento No-Code e Front-End,
-          mostrando soluções criativas e técnicas para diferentes desafios.
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          Alguns dos projetos que desenvolvi utilizando as mais modernas tecnologias
         </p>
       </div>
 

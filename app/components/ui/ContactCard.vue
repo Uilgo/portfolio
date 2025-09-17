@@ -6,15 +6,24 @@
 
     <div>
       <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ title }}</p>
-      <div v-if="href">
-        <a :href="href" target="_blank" rel="noopener" class="text-gray-900 dark:text-white font-semibold hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+      <div>
+        <!-- Link externo -->
+        <a 
+          v-if="href"
+          :href="href"
+          target="_blank"
+          rel="noopener"
+          class="text-gray-900 dark:text-white font-semibold hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+        >
           <slot>{{ subtitle }}</slot>
         </a>
-      </div>
-      <div v-else>
-        <p class="text-gray-900 dark:text-white font-semibold">
-          <slot>{{ subtitle }}</slot>
-        </p>
+        <!-- Texto simples -->
+        <div v-else>
+          <p class="text-gray-900 dark:text-white font-semibold">
+            {{ subtitle }}
+          </p>
+          <slot />
+        </div>
       </div>
     </div>
   </div>

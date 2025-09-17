@@ -1,10 +1,10 @@
 <template>
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-8 sm:py-12 lg:py-0">
     <!-- Background Component -->
     <HeroBackground />
 
     <!-- Status Indicator Component - Alinhado com o header -->
-    <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
+    <div class="absolute top-6 sm:top-8 left-0 right-0 z-20 pointer-events-none">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
         <HeroStatusIndicator 
           status="available" 
@@ -15,11 +15,38 @@
 
     <!-- Content Container - Alinhado com o header -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Main Content Grid - Content + Avatar Side by Side -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
+      <!-- Main Content - Mobile First: Avatar no topo, conteúdo embaixo -->
+      <div class="flex flex-col lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center min-h-[calc(100vh-8rem)] sm:min-h-[calc(100vh-6rem)] lg:min-h-[70vh]">
         
-        <!-- Content Section - Left Side (Larger) -->
-        <div class="flex flex-col justify-center text-center lg:text-left space-y-8 order-1">
+        <!-- Avatar Section - Mobile: Topo | Desktop: Direita -->
+        <div class="flex flex-col items-center justify-center relative order-1 lg:order-2 mb-8 md:mb-12 lg:mb-0 pt-16 md:pt-24 lg:pt-0">
+          <div class="relative">
+            <HeroAvatar 
+              :initials="heroData.initials"
+              :avatar-image="heroData.avatarImage"
+              :name="heroData.name"
+            />
+          </div>
+          
+          <!-- Tech Stack Preview - Melhor espaçamento para tablet -->
+          <div class="mt-8 md:mt-12 lg:mt-16 flex flex-wrap gap-3 md:gap-4 justify-center max-w-md md:max-w-lg">
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:nextdotjs" class="w-4 h-4 md:w-5 md:h-5 text-white" />
+              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Next.js</span>
+            </div>
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:nuxtdotjs" class="w-4 h-4 md:w-5 md:h-5 text-green-400" />
+              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Nuxt.js</span>
+            </div>
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:supabase" class="w-4 h-4 md:w-5 md:h-5 text-green-500" />
+              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Supabase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Section - Mobile: Embaixo | Desktop: Esquerda -->
+        <div class="flex flex-col justify-center text-center lg:text-left space-y-6 md:space-y-8 lg:space-y-8 order-2 lg:order-1 px-2 sm:px-0">
           <!-- Hero Content -->
           <HeroContent 
             :name="heroData.name"
@@ -41,33 +68,6 @@
             class="justify-center lg:justify-start"
           />
         </div>
-
-        <!-- Avatar Section - Right Side -->
-        <div class="flex flex-col items-center justify-center relative order-2">
-          <div class="relative">
-            <HeroAvatar 
-              :initials="heroData.initials"
-              :avatar-image="heroData.avatarImage"
-              :name="heroData.name"
-            />
-          </div>
-          
-          <!-- Tech Stack Preview - Simplificado e melhor alinhado -->
-          <div class="mt-12 flex flex-wrap gap-3 justify-center">
-            <div class="tech-badge px-3 py-1.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:nextdotjs" class="w-4 h-4 text-white" />
-              <span class="text-xs text-gray-600 dark:text-gray-300 font-medium">Next.js</span>
-            </div>
-            <div class="tech-badge px-3 py-1.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:nuxtdotjs" class="w-4 h-4 text-green-400" />
-              <span class="text-xs text-gray-600 dark:text-gray-300 font-medium">Nuxt.js</span>
-            </div>
-            <div class="tech-badge px-3 py-1.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:supabase" class="w-4 h-4 text-green-500" />
-              <span class="text-xs text-gray-600 dark:text-gray-300 font-medium">Supabase</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
       text="Role para baixo"
       scroll-target="#about"
       @scroll-click="scrollToSection"
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+      class="absolute bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-12 left-1/2 transform -translate-x-1/2 z-20 hidden lg:block"
     />
   </section>
 </template>
@@ -95,8 +95,8 @@ import HeroScrollIndicator from '~/components/ui/HeroScrollIndicator.vue'
 const heroData = {
   initials: 'IE',
   name: 'Igor Elias',
-  tagline: 'Especialista No-Code & Front-End',
-  description: 'Transformo ideias em soluções digitais com No-Code/Low-Code e desenvolvimento Frontend moderno. Experiência em criar interfaces que conectam tecnologia e experiência do usuário. 🚀',
+  tagline: 'Desenvolvedor Frontend & No-Code/Low-Code',
+  description: 'Transformo ideias em soluções digitais com Frontend moderno e desenvolvimento No-Code/Low-Code. Experiência em criar interfaces que conectam tecnologia e experiência do usuário. 🚀',
   avatarImage: '/images/igor-profiles.jpeg', // Usando o arquivo que existe
   socialLinks: [
     {

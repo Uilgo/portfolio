@@ -1,17 +1,18 @@
 <template>
   <section id="about" class="py-20 bg-gray-50 dark:bg-gray-900/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div v-motion-slide-visible-once-bottom class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
           Sobre Mim
         </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Conheça minha trajetória, valores e o que me motiva no desenvolvimento de soluções digitais
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Conheça um pouco mais sobre minha trajetória e experiência
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Main Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         <!-- Main Content -->
         <div v-motion-slide-visible-once-left>
           <div class="space-y-6">
@@ -27,7 +28,7 @@
             </div>
 
             <!-- Values -->
-            <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
               <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div class="flex items-center gap-3 mb-2">
                   <div class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">

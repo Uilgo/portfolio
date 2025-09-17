@@ -1,8 +1,7 @@
 /**
  * Composable para efeito de máquina de escrever (typewriter)
  */
-
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch, isRef, readonly, type Ref } from 'vue'
 
 interface UseTypewriterOptions {
   speed?: number
@@ -15,7 +14,7 @@ interface UseTypewriterOptions {
 }
 
 export const useTypewriter = (
-  texts: string | string[],
+  texts: string | string[] | Ref<string[]>,
   options: UseTypewriterOptions = {}
 ) => {
   const {
@@ -37,11 +36,15 @@ export const useTypewriter = (
   let timeoutId: NodeJS.Timeout | null = null
   let cursorIntervalId: NodeJS.Timeout | null = null
 
-  const textArray = Array.isArray(texts) ? texts : [texts]
+  const textArray = computed(() => {
+    const value = isRef(texts) ? texts.value : texts
+    const arr = Array.isArray(value) ? value : [value]
+    // Garante que o array nunca esteja vazio para evitar erros
+    return arr.length > 0 ? arr : ['']
+  })
 
   const startCursorBlink = () => {
-    if (!cursor) return
-    
+    if (!cursor || cursorIntervalId) return
     cursorIntervalId = setInterval(() => {
       showCursor.value = !showCursor.value
     }, 500)
@@ -56,22 +59,27 @@ export const useTypewriter = (
   }
 
   const typeText = () => {
-    const currentText = textArray[currentIndex.value]
-    if (!currentText) return
-    
+    // Garante que o array de texto não está vazio
+    if (!textArray.value || textArray.value.length === 0 || textArray.value[0] === '') return
+
+    // Garante que o índice atual é válido
+    if (currentIndex.value >= textArray.value.length) {
+      currentIndex.value = 0
+    }
+
+    const currentText = textArray.value[currentIndex.value]
+    if (typeof currentText !== 'string') return
+
     if (!isDeleting.value) {
       // Digitando
       if (displayText.value.length < currentText.length) {
         isTyping.value = true
         displayText.value = currentText.slice(0, displayText.value.length + 1)
-        
         timeoutId = setTimeout(typeText, speed)
       } else {
-        // Texto completo digitado
+        // Texto completo
         isTyping.value = false
-        
-        if (textArray.length > 1 && loop) {
-          // Se há múltiplos textos e loop está ativo, aguarda e começa a deletar
+        if (textArray.value.length > 1 && loop) {
           timeoutId = setTimeout(() => {
             isDeleting.value = true
             typeText()
@@ -84,16 +92,16 @@ export const useTypewriter = (
         displayText.value = displayText.value.slice(0, -1)
         timeoutId = setTimeout(typeText, deleteSpeed)
       } else {
-        // Texto completamente deletado
+        // Deletado por completo
         isDeleting.value = false
-        currentIndex.value = (currentIndex.value + 1) % textArray.length
-        
+        currentIndex.value = (currentIndex.value + 1) % textArray.value.length
         timeoutId = setTimeout(typeText, delay)
       }
     }
   }
 
   const start = () => {
+    stop() // Previne múltiplas instâncias
     if (cursor) startCursorBlink()
     typeText()
   }
@@ -117,7 +125,8 @@ export const useTypewriter = (
 
   const restart = () => {
     reset()
-    start()
+    // Pequeno delay para garantir que o DOM está pronto
+    setTimeout(start, 50)
   }
 
   // Computed para o texto final com cursor
@@ -126,8 +135,14 @@ export const useTypewriter = (
     return displayText.value + (showCursor.value ? cursorChar : ' ')
   })
 
+  watch(textArray, (newVal, oldVal) => {
+    if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+      restart()
+    }
+  }, { deep: true })
+
   onMounted(() => {
-    // Pequeno delay antes de começar
+    // Delay inicial
     timeoutId = setTimeout(start, 500)
   })
 

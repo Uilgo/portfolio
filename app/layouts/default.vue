@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div class="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
     <!-- Skip to main content (accessibility) -->
     <a 
       href="#main-content" 
@@ -12,7 +12,7 @@
     <Header />
 
     <!-- Main Content -->
-    <main id="main-content" class="flex-1">
+    <main id="main-content" class="flex-1 overflow-x-hidden">
       <slot />
     </main>
 
@@ -60,11 +60,11 @@
           <button
             v-if="showScrollToTop && showFloatingButtons && isClientMounted"
             @click="scrollToTop"
-            class="fixed bottom-6 left-6 flex items-center justify-center w-8 h-8 md:w-14 md:h-14 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition-all duration-200 focus-ring group z-40"
+            class="fixed bottom-6 left-6 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition-all duration-200 focus-ring group z-40"
             aria-label="Voltar ao topo"
           >
             <!-- Ícone maior em desktop, menor em mobile -->
-            <Icon name="heroicons:chevron-up" class="h-4 w-4 md:h-6 md:w-6 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
+            <Icon name="heroicons:chevron-up" class="h-5 w-5 md:h-6 md:w-6 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
 
             <!-- Tooltip acessível - compacto -->
             <span role="tooltip" class="pointer-events-none absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">
@@ -89,10 +89,10 @@
             :href="whatsappHref"
             target="_blank"
             rel="noopener noreferrer"
-            class="fixed bottom-6 right-6 flex items-center justify-center w-8 h-8 md:w-14 md:h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-md hover:shadow-lg transition-all duration-200 focus-ring group z-40"
+            class="fixed bottom-6 right-6 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-md hover:shadow-lg transition-all duration-200 focus-ring group z-40"
             aria-label="Entrar em contato via WhatsApp"
           >
-            <Icon name="simple-icons:whatsapp" class="h-4 w-4 md:h-6 md:w-6 text-white transition-transform group-hover:scale-110" />
+            <Icon name="simple-icons:whatsapp" class="h-5 w-5 md:h-6 md:w-6 text-white transition-transform group-hover:scale-110" />
 
             <!-- Tooltip acessível - compacto -->
             <span role="tooltip" class="pointer-events-none absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50">

@@ -55,7 +55,7 @@ defineEmits<{
 }>()
 
 const openDemo = () => {
-  if (props.project.url) {
+  if (process.client && props.project.url) {
     window.open(props.project.url, '_blank')
   }
 }

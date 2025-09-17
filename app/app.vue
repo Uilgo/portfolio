@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, onMounted } from 'vue'
+import { watch, onMounted, nextTick } from 'vue'
 import { useLoading } from '~/composables/useLoading'
 import LoadingScreen from '~/components/ui/LoadingScreen.vue'
 
@@ -52,12 +52,18 @@ onMounted(() => {
   watch(() => colorMode.value, applyTheme, { immediate: true })
 
   // Simular loading inicial (apenas na primeira visita)
-  if (process.client) {
-    const hasVisited = sessionStorage.getItem('portfolio-visited')
-    if (!hasVisited) {
-      simulateLoading(2500, loadingMessages)
-      sessionStorage.setItem('portfolio-visited', 'true')
+  // Aguardar próximo tick para garantir hidratação completa
+  nextTick(() => {
+    try {
+      const hasVisited = sessionStorage.getItem('portfolio-visited')
+      if (!hasVisited) {
+        simulateLoading(2500, loadingMessages)
+        sessionStorage.setItem('portfolio-visited', 'true')
+      }
+    } catch (error) {
+      // Fallback se sessionStorage não estiver disponível
+      console.warn('SessionStorage não disponível:', error)
     }
-  }
+  })
 })
 </script>

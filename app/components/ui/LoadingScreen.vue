@@ -16,13 +16,13 @@
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-5">
         <div
-          v-for="i in 20"
+          v-for="(dot, i) in backgroundDots"
           :key="`dot-${i}`"
           class="absolute w-2 h-2 bg-primary-500 rounded-full animate-pulse"
           :style="{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 2}s`
+            left: dot.left + '%',
+            top: dot.top + '%',
+            animationDelay: dot.delay + 's'
           }"
         />
       </div>
@@ -156,17 +156,44 @@ const emit = defineEmits<{
 const progress = ref(0)
 const currentMessageIndex = ref(0)
 
-// Elementos decorativos
+// Elementos decorativos - valores fixos para evitar problemas de hidratação
 const orbitDots = ref(Array.from({ length: 3 }, (_, i) => i))
-const particles = ref(
-  Array.from({ length: 8 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    delay: Math.random() * 2,
-    duration: 3 + Math.random() * 2
-  }))
-)
+
+// Pontos de fundo com valores fixos para SSR/Client consistency
+const backgroundDots = ref([
+  { left: 10, top: 20, delay: 0 },
+  { left: 85, top: 15, delay: 0.3 },
+  { left: 25, top: 80, delay: 0.6 },
+  { left: 70, top: 25, delay: 0.9 },
+  { left: 15, top: 60, delay: 1.2 },
+  { left: 90, top: 70, delay: 1.5 },
+  { left: 45, top: 10, delay: 1.8 },
+  { left: 60, top: 85, delay: 0.2 },
+  { left: 30, top: 40, delay: 0.5 },
+  { left: 80, top: 55, delay: 0.8 },
+  { left: 5, top: 35, delay: 1.1 },
+  { left: 95, top: 45, delay: 1.4 },
+  { left: 50, top: 75, delay: 1.7 },
+  { left: 20, top: 5, delay: 0.1 },
+  { left: 75, top: 90, delay: 0.4 },
+  { left: 35, top: 65, delay: 0.7 },
+  { left: 65, top: 30, delay: 1.0 },
+  { left: 40, top: 95, delay: 1.3 },
+  { left: 85, top: 40, delay: 1.6 },
+  { left: 55, top: 50, delay: 1.9 }
+])
+
+// Partículas com valores fixos para SSR/Client consistency
+const particles = ref([
+  { id: 0, x: 20, y: 30, delay: 0, duration: 3 },
+  { id: 1, x: 80, y: 20, delay: 0.5, duration: 4 },
+  { id: 2, x: 60, y: 70, delay: 1, duration: 3.5 },
+  { id: 3, x: 15, y: 80, delay: 1.5, duration: 4.5 },
+  { id: 4, x: 90, y: 60, delay: 0.3, duration: 3.8 },
+  { id: 5, x: 40, y: 15, delay: 1.2, duration: 4.2 },
+  { id: 6, x: 75, y: 85, delay: 0.8, duration: 3.3 },
+  { id: 7, x: 25, y: 50, delay: 1.8, duration: 4.8 }
+])
 
 // Tech stack icons
 const techStack = [

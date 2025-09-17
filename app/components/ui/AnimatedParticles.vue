@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 interface Particle {
   id: number
@@ -55,29 +55,72 @@ const circleBorders = [
   'border-indigo-200'
 ]
 
-// Gerar partículas aleatórias
-const generateParticles = (count: number): Particle[] => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    size: Math.random() * 8 + 4, // 4-12px
-    colorClass: particleColors[Math.floor(Math.random() * particleColors.length)] || 'bg-primary-300',
-    delay: Math.random() * 5,
-    duration: Math.random() * 10 + 10 // 10-20s
-  }))
+// Gerar partículas com valores fixos para evitar problemas de hidratação
+const generateParticles = (count: number) => {
+  // Valores fixos para SSR/Client consistency
+  const fixedPositions = [
+    { left: 10, top: 20, size: 6, delay: 0, duration: 15 },
+    { left: 85, top: 15, size: 8, delay: 1, duration: 18 },
+    { left: 20, top: 80, size: 4, delay: 2, duration: 12 },
+    { left: 70, top: 70, size: 10, delay: 0.5, duration: 20 },
+    { left: 50, top: 30, size: 5, delay: 1.5, duration: 16 },
+    { left: 30, top: 60, size: 7, delay: 2.5, duration: 14 },
+    { left: 90, top: 50, size: 6, delay: 3, duration: 17 },
+    { left: 15, top: 45, size: 9, delay: 0.8, duration: 13 },
+    { left: 60, top: 85, size: 4, delay: 1.8, duration: 19 },
+    { left: 40, top: 10, size: 8, delay: 2.2, duration: 15 },
+    { left: 75, top: 35, size: 5, delay: 3.5, duration: 16 },
+    { left: 25, top: 75, size: 7, delay: 1.2, duration: 18 }
+  ]
+
+  return Array.from({ length: Math.min(count, fixedPositions.length) }, (_, i) => {
+    const position = fixedPositions[i]
+    if (!position) {
+      // Fallback para posição padrão se não existir
+      return {
+        id: i,
+        left: 50,
+        top: 50,
+        size: 6,
+        colorClass: particleColors[i % particleColors.length] || 'bg-primary-300',
+        delay: 0,
+        duration: 15
+      }
+    }
+    
+    return {
+      id: i,
+      left: position.left,
+      top: position.top,
+      size: position.size,
+      colorClass: particleColors[i % particleColors.length] || 'bg-primary-300',
+      delay: position.delay,
+      duration: position.duration
+    }
+  })
 }
 
-// Regenerar elementos periodicamente para dinamismo
+// Regenerar elementos periodicamente para dinamismo (apenas no cliente)
 const regenerateElements = () => {
-  // Regenerar algumas partículas
+  if (!process.client) return
+  
+  // Regenerar algumas partículas com valores fixos
   const particlesToRegenerate = Math.floor(particles.value.length * 0.3)
+  const newPositions = [
+    { left: 15, top: 25 }, { left: 80, top: 60 }, { left: 45, top: 15 },
+    { left: 65, top: 80 }, { left: 25, top: 55 }
+  ]
+  
   for (let i = 0; i < particlesToRegenerate; i++) {
     const randomIndex = Math.floor(Math.random() * particles.value.length)
-    if (particles.value[randomIndex]) {
-      particles.value[randomIndex].left = Math.random() * 100
-      particles.value[randomIndex].top = Math.random() * 100
-      particles.value[randomIndex].delay = Math.random() * 5
+    const newPos = newPositions[i % newPositions.length]
+    const particle = particles.value[randomIndex]
+    
+    // Verificar se a partícula e nova posição existem antes de atualizar
+    if (particle && newPos) {
+      particle.left = newPos.left
+      particle.top = newPos.top
+      particle.delay = i * 0.5
     }
   }
 }

@@ -2,34 +2,36 @@
   <section id="skills" class="py-20 bg-white dark:bg-gray-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
-      <div class="text-center mb-16 animate-on-scroll" ref="headerRef">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-slide-up">
+      <div class="text-center mb-12 animate-on-scroll" ref="headerRef">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-slide-up">
           Habilidades & Tecnologias
         </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in animate-delay-200">
-          Ferramentas e tecnologias que domino para criar soluções completas e eficientes
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in animate-delay-200">
+          Tecnologias e ferramentas que utilizo para criar soluções modernas e eficientes
         </p>
       </div>
 
       <!-- IA Estruturada - Diferencial -->
       <div v-motion-slide-visible-once-bottom class="mb-16">
-        <div class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 rounded-2xl p-6 border border-orange-200 dark:border-orange-800/50">
+        <div class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 rounded-2xl p-4 sm:p-6 border border-orange-200 dark:border-orange-800/50">
           <!-- Header Section -->
-          <div class="flex items-start gap-4 mb-6">
-            <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/50 rounded-2xl flex items-center justify-center flex-shrink-0">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-6">
+            <!-- Ícone - oculto no mobile -->
+            <div class="hidden sm:flex w-16 h-16 bg-orange-100 dark:bg-orange-900/50 rounded-2xl items-center justify-center flex-shrink-0">
               <Icon name="heroicons:cpu-chip" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
             </div>
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">IA Estruturada</h3>
+            <div class="flex-1 w-full">
+              <!-- Título e Badge - mesma linha no mobile -->
+              <div class="flex items-center justify-between sm:flex-row sm:items-center gap-2 sm:gap-3 mb-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">IA Estruturada</h3>
                 <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 text-sm rounded-full font-medium">
                   🚀 Diferencial
                 </span>
               </div>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm sm:text-base">
                 Desenvolvimento assistido por inteligência artificial
               </p>
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
                 <strong>Abordagem única:</strong> Não utilizo ferramentas automáticas, mas sim estruturo projetos 
                 corretamente utilizando IA como ferramenta de apoio no desenvolvimento componentizado e modular.
               </p>
@@ -37,44 +39,44 @@
           </div>
           
           <!-- Mini Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="flex items-start gap-3 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
-              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="flex items-start gap-3 p-3 sm:p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
+              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon name="heroicons:puzzle-piece" class="w-4 h-4 text-orange-600 dark:text-orange-400" />
               </div>
-              <div>
+              <div class="min-w-0 flex-1">
                 <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm mb-1">Arquitetura Componentizada</h4>
-                <p class="text-gray-600 dark:text-gray-400 text-xs">Estruturação modular e escalável de projetos</p>
+                <p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">Estruturação modular e escalável de projetos</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-3 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
-              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="flex items-start gap-3 p-3 sm:p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
+              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon name="heroicons:academic-cap" class="w-4 h-4 text-orange-600 dark:text-orange-400" />
               </div>
-              <div>
+              <div class="min-w-0 flex-1">
                 <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm mb-1">Aprendizado Contínuo</h4>
-                <p class="text-gray-600 dark:text-gray-400 text-xs">Crescimento técnico constante e metodológico</p>
+                <p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">Crescimento técnico constante e metodológico</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-3 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
-              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="flex items-start gap-3 p-3 sm:p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
+              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon name="heroicons:code-bracket" class="w-4 h-4 text-orange-600 dark:text-orange-400" />
               </div>
-              <div>
+              <div class="min-w-0 flex-1">
                 <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm mb-1">Code Review Assistido</h4>
-                <p class="text-gray-600 dark:text-gray-400 text-xs">Refatoração e otimização com suporte de IA</p>
+                <p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">Refatoração e otimização com suporte de IA</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-3 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
-              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div class="flex items-start gap-3 p-3 sm:p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
+              <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon name="heroicons:arrow-path" class="w-4 h-4 text-orange-600 dark:text-orange-400" />
               </div>
-              <div>
+              <div class="min-w-0 flex-1">
                 <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm mb-1">Workflow Integrado</h4>
-                <p class="text-gray-600 dark:text-gray-400 text-xs">IA como ferramenta no processo de desenvolvimento</p>
+                <p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">IA como ferramenta no processo de desenvolvimento</p>
               </div>
             </div>
           </div>

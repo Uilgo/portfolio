@@ -1,12 +1,17 @@
 <template>
-  <BaseModal :modelValue="isOpen" @update:modelValue="$emit('close')" @close="$emit('close')">
+  <!-- Desktop: Modal tradicional -->
+  <BaseModal 
+    v-if="!isMobile" 
+    :modelValue="isOpen" 
+    @update:modelValue="$emit('close')" 
+    @close="$emit('close')"
+  >
     <template #header>
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
             {{ project.nome }}
           </h2>
-          <ProjectStatus :status="project.status" />
         </div>
         <button
           @click="$emit('close')"
@@ -120,13 +125,132 @@
     </div>
 
   </BaseModal>
+
+  <!-- Mobile: BottomSheet -->
+  <BottomSheet 
+    v-if="isMobile" 
+    :modelValue="isOpen" 
+    @update:modelValue="$emit('close')" 
+    @close="$emit('close')"
+  >
+    <template #header>
+      <div class="flex items-center gap-2">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+          {{ project.nome }}
+        </h2>
+      </div>
+    </template>
+    
+    <!-- Content Mobile -->
+    <div class="p-4 space-y-4">
+      <!-- Imagem -->
+      <div class="h-48 rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <ProjectImage :src="project.imagem" :alt="project.nome" variant="modal" />
+      </div>
+
+      <!-- Info -->
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">
+            Descrição
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ project.descricao }}
+          </p>
+        </div>
+
+        <!-- Tecnologias -->
+        <div>
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2">
+            Tecnologias
+          </h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span
+              v-for="tech in project.tecnologias"
+              :key="tech"
+              class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs"
+            >
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <ProjectActions :url="project.url" :github="project.github" />
+      </div>
+
+      <!-- Detalhes do Projeto Mobile -->
+      <div v-if="project.detalhes" class="space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4">
+        <!-- Desafio -->
+        <div v-if="project.detalhes.desafio">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <Icon name="heroicons:exclamation-triangle" class="w-4 h-4 text-orange-500" />
+            Desafio
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ project.detalhes.desafio }}
+          </p>
+        </div>
+
+        <!-- Solução -->
+        <div v-if="project.detalhes.solucao">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <Icon name="heroicons:light-bulb" class="w-4 h-4 text-yellow-500" />
+            Solução
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ project.detalhes.solucao }}
+          </p>
+        </div>
+
+        <!-- Resultados -->
+        <div v-if="project.detalhes.resultados">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <Icon name="heroicons:chart-bar" class="w-4 h-4 text-green-500" />
+            Resultados
+          </h3>
+          <ul class="space-y-1.5">
+            <li 
+              v-for="resultado in project.detalhes.resultados" 
+              :key="resultado"
+              class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+            >
+              <Icon name="heroicons:check-circle" class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+              {{ resultado }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div v-if="project.detalhes.funcionalidades">
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <Icon name="heroicons:cog-6-tooth" class="w-4 h-4 text-blue-500" />
+            Funcionalidades
+          </h3>
+          <div class="space-y-1.5">
+            <div 
+              v-for="funcionalidade in project.detalhes.funcionalidades" 
+              :key="funcionalidade"
+              class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+            >
+              <Icon name="heroicons:check" class="w-3 h-3 text-blue-500 mt-1 flex-shrink-0" />
+              {{ funcionalidade }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </BottomSheet>
 </template>
 
 <script setup lang="ts">
 import BaseModal from '~/components/ui/BaseModal.vue'
+import BottomSheet from '~/components/ui/BottomSheet.vue'
 import ProjectStatus from '~/components/projects/ProjectStatus.vue'
 import ProjectImage from '~/components/projects/ProjectImage.vue'
 import ProjectActions from '~/components/projects/ProjectActions.vue'
+import { useIsMobile } from '~/composables/dom/useMediaQuery'
 
 interface Props {
   project: any
@@ -139,5 +263,8 @@ defineEmits<{
   close: []
 }>()
 
-// BaseModal cuida de: foco, ESC, backdrop e prevenção de scroll.
+// Detecta se é mobile para alternar entre Modal e BottomSheet
+const isMobile = useIsMobile()
+
+// BaseModal e BottomSheet cuidam de: foco, ESC, backdrop e prevenção de scroll.
 </script>

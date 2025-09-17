@@ -10,6 +10,7 @@
       :type="type"
       :placeholder="placeholder"
       :required="required"
+      :autocomplete="autocomplete"
       :value="modelValue"
       @input="onInput"
       class="w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors relative z-0"
@@ -43,6 +44,7 @@ const props = defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
   required: { type: Boolean, default: false },
+  autocomplete: { type: String, default: '' },
   leftIcon: { type: String, default: '' },
   rightIcon: { type: String, default: '' },
   clearable: { type: Boolean, default: false }
