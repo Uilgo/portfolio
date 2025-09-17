@@ -112,9 +112,10 @@ const regenerateElements = () => {
   ]
   
   for (let i = 0; i < particlesToRegenerate; i++) {
-    const randomIndex = Math.floor(Math.random() * particles.value.length)
+    // Usar índice determinístico em vez de Math.random
+    const particleIndex = i % particles.value.length
     const newPos = newPositions[i % newPositions.length]
-    const particle = particles.value[randomIndex]
+    const particle = particles.value[particleIndex]
     
     // Verificar se a partícula e nova posição existem antes de atualizar
     if (particle && newPos) {

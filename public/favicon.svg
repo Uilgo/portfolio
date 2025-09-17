@@ -1,13 +1,15 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Círculo de fundo -->
-  <circle cx="256" cy="256" r="256" fill="#111827"/>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo escuro de fundo -->
+  <circle cx="64" cy="64" r="64" fill="#1a1a1a"/>
   
-  <!-- Texto IE -->
-  <text x="256" y="336" 
-        font-family="system-ui, -apple-system, sans-serif" 
-        font-size="192" 
-        font-weight="700" 
-        text-anchor="middle" 
-        fill="white" 
-        letter-spacing="8px">IE</text>
+  <!-- Texto "IE" centralizado -->
+  <text 
+    x="50%" 
+    y="50%" 
+    font-family="Arial, sans-serif" 
+    font-size="56" 
+    font-weight="bold" 
+    fill="white" 
+    text-anchor="middle" 
+    dominant-baseline="central">IE</text>
 </svg>

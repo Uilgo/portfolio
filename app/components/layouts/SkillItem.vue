@@ -1,17 +1,17 @@
 <template>
   <div 
-    class="group bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-200 cursor-pointer hover-lift hover-glow animate-on-scroll"
+    class="group bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-200 cursor-pointer hover-lift hover-glow animate-on-scroll"
     :class="hoverClasses"
   >
     <!-- Icon and Name -->
-    <div class="flex flex-col items-center text-center space-y-3">
+    <div class="flex flex-col items-center text-center space-y-2 sm:space-y-3">
       <div 
-        class="w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-200"
+        class="w-10 h-10 sm:w-12 sm:h-12 rounded-md sm:rounded-lg flex items-center justify-center transition-colors duration-200"
         :class="iconBgClasses"
       >
         <span 
           v-if="customLetter"
-          class="text-lg font-bold transition-colors duration-200"
+          class="text-base sm:text-lg font-bold transition-colors duration-200"
           :class="iconClasses"
         >
           {{ customLetter }}
@@ -19,13 +19,13 @@
         <Icon 
           v-else
           :name="icon" 
-          class="w-6 h-6 transition-colors duration-200"
+          class="w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-200"
           :class="iconClasses"
         />
       </div>
       
       <div>
-        <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+        <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-xs sm:text-sm">
           {{ name }}
         </h4>
       </div>

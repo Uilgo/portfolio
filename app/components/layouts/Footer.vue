@@ -11,6 +11,11 @@
 </template>
 
 <script setup lang="ts">
-// Current year for footer
-const currentYear = new Date().getFullYear()
+import { useClientSideHydration } from '~/composables/useClientMount'
+
+// Current year for footer - usando hidratação do lado do cliente para evitar mismatch
+const { isClientMounted } = useClientSideHydration()
+const currentYear = computed(() => {
+  return isClientMounted.value ? new Date().getFullYear() : 2024
+})
 </script>

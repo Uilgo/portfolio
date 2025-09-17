@@ -7,6 +7,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Espaço para header fixo */
     overflow-x: hidden;
   }
 
@@ -17,6 +18,11 @@
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+  }
+
+  /* Melhorar suavidade do scroll em navegadores WebKit */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Melhorar performance das animações */
@@ -39,21 +45,21 @@
     }
   }
 
-  /* Scrollbar styling */
+  /* Scrollbar styling - mais fino e discreto */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
+    @apply bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+    @apply bg-gray-300/50 dark:bg-gray-600/50 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400 dark:bg-gray-500;
+    @apply bg-gray-400/70 dark:bg-gray-500/70;
   }
 
   /* Selection styling */

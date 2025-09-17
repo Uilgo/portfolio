@@ -237,6 +237,12 @@ export const useTextScramble = (finalText: string, options: { chars?: string; sp
     isScrambling.value = true
     let frame = 0
 
+    // Função para gerar caractere aleatório de forma determinística
+    const getRandomChar = (index: number, frameNum: number) => {
+      const seed = (index + frameNum) * 31 // Seed determinístico
+      return chars[seed % chars.length]
+    }
+
     const animate = () => {
       let output = ''
       
@@ -244,7 +250,7 @@ export const useTextScramble = (finalText: string, options: { chars?: string; sp
         if (frame >= iterations + i) {
           output += finalText[i]
         } else {
-          output += chars[Math.floor(Math.random() * chars.length)]
+          output += getRandomChar(i, frame)
         }
       }
 

@@ -3,16 +3,28 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
 
-  // Configurações experimentais
+  // Configurações experimentais para estabilidade
   experimental: {
+    // Desabilita recursos experimentais que podem causar warnings
     asyncContext: false,
-    // Melhora a hidratação
-    payloadExtraction: false
+    // Desabilita extração de payload para evitar problemas de hidratação
+    payloadExtraction: false,
+    // Desabilita entrada assíncrona
+    asyncEntry: false,
+    // Mantém servidor Vue ativo
+    noVueServer: false
   },
 
   // SSR configuration
   ssr: true,
   
+  // Configurações para melhorar a hidratação
+  nitro: {
+    experimental: {
+      wasm: false
+    }
+  },
+
   // Configurações de hidratação e SEO
   app: {
     head: {
@@ -66,22 +78,23 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/svg+xml',
-          href: '/favicon.svg'
+          href: '/favicon.svg?v=2'
         },
         {
-          rel: 'icon',
-          type: 'image/x-icon',
-          href: '/favicon.ico'
+          rel: 'shortcut icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg?v=2'
         },
         {
           rel: 'apple-touch-icon',
-          href: '/favicon.svg'
+          href: '/favicon.svg?v=2',
+          sizes: '180x180',
         }
       ]
     }
   },
 
-  // Configurações do Vue para reduzir warnings
+  // Configurações do Vue para reduzir warnings e melhorar hidratação
   vue: {
     compilerOptions: {
       // Remove warnings de hidratação em desenvolvimento
