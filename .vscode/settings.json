@@ -1,0 +1,23 @@
+{
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "tailwindCSS.experimental.configFile": "tailwind.config.js",
+  "tailwindCSS.validate": true,
+  "tailwindCSS.lint.cssConflict": "warning",
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "javascript": "html",
+    "typescriptreact": "html",
+    "javascriptreact": "html"
+  },
+  "css.customData": [".vscode/css_custom_data.json"]
+}

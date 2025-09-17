@@ -1,0 +1,25 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "TailwindCSS v4 theme directive for defining design tokens",
+      "browsers": ["C85", "FF80", "S14"]
+    },
+    {
+      "name": "@apply",
+      "description": "TailwindCSS directive for applying utility classes",
+      "browsers": ["C85", "FF80", "S14"]
+    },
+    {
+      "name": "@layer",
+      "description": "TailwindCSS directive for organizing CSS into layers",
+      "browsers": ["C85", "FF80", "S14"]
+    },
+    {
+      "name": "@config",
+      "description": "TailwindCSS v4 configuration directive",
+      "browsers": ["C85", "FF80", "S14"]
+    }
+  ]
+}
