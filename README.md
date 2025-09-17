@@ -1,6 +1,6 @@
-# 🚀 Portfólio Igor Elias - Versão Animada
+# 🚀 Portfólio
 
-Portfólio pessoal desenvolvido com Nuxt 3, Vue 3 e Tailwind CSS, agora com animações incríveis e interações fluidas!
+Portfólio pessoal desenvolvido com Nuxt 4 e Tailwind CSS, com animações e interações fluidas!
 
 ## ✨ Animações Implementadas
 
