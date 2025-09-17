@@ -23,18 +23,38 @@
               ref="panel"
               class="bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl w-full max-h-[90vh] overflow-hidden"
               @click.stop
-              @touchstart="onTouchStart"
-              @touchmove="onTouchMove"
-              @touchend="onTouchEnd"
             >
-              <!-- Drag Handle -->
-              <div class="flex justify-center py-3 px-4 border-b border-gray-100 dark:border-gray-700">
-                <div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer" @click="close"></div>
-              </div>
+              <!-- Drag Handle Area - Expandida para incluir header -->
+              <div 
+                ref="dragArea"
+                class="cursor-grab active:cursor-grabbing select-none transition-all duration-200"
+                :class="{ 
+                  'cursor-grabbing': isDragging || isMouseDragging,
+                  'bg-gray-50/50 dark:bg-gray-700/30': isDragging || isMouseDragging 
+                }"
+                @touchstart="onTouchStart"
+                @touchmove="onTouchMove"
+                @touchend="onTouchEnd"
+                @mousedown="onMouseDown"
+                @mousemove="onMouseMove"
+                @mouseup="onMouseUp"
+                @mouseleave="onMouseUp"
+              >
+                <!-- Drag Handle Visual -->
+                <div class="flex justify-center py-3 px-4 border-b border-gray-100 dark:border-gray-700">
+                  <div 
+                    class="w-12 h-1.5 rounded-full transition-all duration-200" 
+                    :class="{ 
+                      'bg-gray-400 dark:bg-gray-500 w-16 h-2': isDragging || isMouseDragging,
+                      'bg-gray-300 dark:bg-gray-600': !(isDragging || isMouseDragging)
+                    }"
+                  ></div>
+                </div>
 
-              <!-- Header slot -->
-              <div v-if="$slots.header" class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
-                <slot name="header" />
+                <!-- Header slot -->
+                <div v-if="$slots.header" class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+                  <slot name="header" />
+                </div>
               </div>
 
               <!-- Body -->
@@ -63,12 +83,17 @@ const emit = defineEmits<{ 'update:modelValue': [boolean]; close: [] }>()
 
 // Refs
 const panel = ref<HTMLElement | null>(null)
+const dragArea = ref<HTMLElement | null>(null)
 
 // Estado para controle de gestos
 const touchStartY = ref(0)
 const touchCurrentY = ref(0)
+const mouseStartY = ref(0)
+const mouseCurrentY = ref(0)
 const isDragging = ref(false)
+const isMouseDragging = ref(false)
 const dragThreshold = 100 // pixels para fechar
+const initialScrollTop = ref(0)
 
 // Funções de controle
 const close = () => {
@@ -91,7 +116,10 @@ const onTouchStart = (e: TouchEvent) => {
   if (e.touches.length === 1) {
     touchStartY.value = e.touches[0]?.clientY || 0
     isDragging.value = true
-    // Não previne o evento aqui para permitir scroll interno
+    
+    // Armazena a posição inicial do scroll do conteúdo
+    const bodyElement = panel.value?.querySelector('.overflow-y-auto')
+    initialScrollTop.value = bodyElement ? bodyElement.scrollTop : 0
   }
 }
 
@@ -101,19 +129,28 @@ const onTouchMove = (e: TouchEvent) => {
   touchCurrentY.value = e.touches[0]?.clientY || 0
   const deltaY = touchCurrentY.value - touchStartY.value
   
-  // Só aplica drag se estiver arrastando para baixo e se o conteúdo não estiver sendo scrollado
+  // Verifica se o conteúdo está no topo e se está arrastando para baixo
   const bodyElement = panel.value?.querySelector('.overflow-y-auto')
   const isAtTop = bodyElement ? bodyElement.scrollTop === 0 : true
+  const isScrollingUp = bodyElement ? bodyElement.scrollTop > initialScrollTop.value : false
   
-  // Só permite arrastar para baixo e apenas se estiver no topo do scroll
-  if (deltaY > 0 && isAtTop && panel.value) {
-    // Previne o scroll da página principal apenas durante o drag do BottomSheet
+  // Só permite arrastar para baixo se:
+  // 1. Estiver no topo do conteúdo
+  // 2. Não estiver fazendo scroll para cima
+  // 3. O movimento for para baixo (deltaY > 0)
+  if (deltaY > 0 && isAtTop && !isScrollingUp && panel.value) {
+    // Previne o scroll da página principal apenas durante o drag válido
     e.preventDefault()
+    e.stopPropagation()
     
     // Aplica transformação suave durante o drag
-    const transform = Math.min(deltaY, 200) // Limita o drag
+    const transform = Math.min(deltaY * 0.8, 200) // Reduz a sensibilidade e limita o drag
     panel.value.style.transform = `translateY(${transform}px)`
     panel.value.style.transition = 'none'
+    
+    // Adiciona opacidade baseada no drag
+    const opacity = Math.max(1 - (transform / 300), 0.5)
+    panel.value.style.opacity = opacity.toString()
   }
 }
 
@@ -125,6 +162,7 @@ const onTouchEnd = () => {
   // Remove a transformação e restaura a transição
   panel.value.style.transform = ''
   panel.value.style.transition = ''
+  panel.value.style.opacity = ''
   
   // Se arrastou mais que o threshold, fecha o modal
   if (deltaY > dragThreshold) {
@@ -135,6 +173,65 @@ const onTouchEnd = () => {
   isDragging.value = false
   touchStartY.value = 0
   touchCurrentY.value = 0
+  initialScrollTop.value = 0
+}
+
+// Controle de gestos mouse (para desktop)
+const onMouseDown = (e: MouseEvent) => {
+  mouseStartY.value = e.clientY
+  isMouseDragging.value = true
+  
+  // Armazena a posição inicial do scroll do conteúdo
+  const bodyElement = panel.value?.querySelector('.overflow-y-auto')
+  initialScrollTop.value = bodyElement ? bodyElement.scrollTop : 0
+  
+  // Previne seleção de texto durante o drag
+  e.preventDefault()
+}
+
+const onMouseMove = (e: MouseEvent) => {
+  if (!isMouseDragging.value) return
+  
+  mouseCurrentY.value = e.clientY
+  const deltaY = mouseCurrentY.value - mouseStartY.value
+  
+  // Verifica se o conteúdo está no topo e se está arrastando para baixo
+  const bodyElement = panel.value?.querySelector('.overflow-y-auto')
+  const isAtTop = bodyElement ? bodyElement.scrollTop === 0 : true
+  
+  // Só permite arrastar para baixo se estiver no topo do conteúdo
+  if (deltaY > 0 && isAtTop && panel.value) {
+    // Aplica transformação suave durante o drag
+    const transform = Math.min(deltaY * 0.6, 150) // Menos sensível no desktop
+    panel.value.style.transform = `translateY(${transform}px)`
+    panel.value.style.transition = 'none'
+    
+    // Adiciona opacidade baseada no drag
+    const opacity = Math.max(1 - (transform / 250), 0.7)
+    panel.value.style.opacity = opacity.toString()
+  }
+}
+
+const onMouseUp = () => {
+  if (!isMouseDragging.value || !panel.value) return
+  
+  const deltaY = mouseCurrentY.value - mouseStartY.value
+  
+  // Remove a transformação e restaura a transição
+  panel.value.style.transform = ''
+  panel.value.style.transition = ''
+  panel.value.style.opacity = ''
+  
+  // Se arrastou mais que o threshold, fecha o modal
+  if (deltaY > dragThreshold * 0.8) { // Threshold menor para desktop
+    close()
+  }
+  
+  // Reset do estado
+  isMouseDragging.value = false
+  mouseStartY.value = 0
+  mouseCurrentY.value = 0
+  initialScrollTop.value = 0
 }
 
 // Watchers e lifecycle
