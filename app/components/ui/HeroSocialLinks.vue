@@ -9,7 +9,7 @@
       :class="socialLinkClasses"
       :aria-label="social.name"
     >
-      <Icon :name="social.icon" class="w-6 h-6 sm:w-7 sm:h-7 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
+      <Icon :name="social.icon" class="w-6 h-6 sm:w-7 sm:h-7 lg:w-5 lg:h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
     </a>
   </div>
 </template>

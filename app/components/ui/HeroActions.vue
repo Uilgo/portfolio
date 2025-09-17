@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-4 w-full hero-actions max-w-md sm:max-w-none mx-auto lg:mx-0 mb-6 md:mb-8 lg:mb-6">
-    <!-- Primeira linha: Ver Projetos e Baixar CV -->
+    <!-- Mobile: Duas linhas | Desktop: Uma linha com os 3 botões -->
     <div class="flex flex-col sm:flex-row gap-3 md:gap-4 lg:gap-4 justify-center lg:justify-start">
       <Button 
         variant="primary" 
         size="md" 
         icon="heroicons:rocket-launch"
-        class="w-full sm:flex-1 sm:max-w-[180px] md:max-w-[200px] lg:max-w-[180px] shadow-lg hover:shadow-xl hover-lift animate-slide-up animate-delay-100"
+        class="w-full sm:flex-1 sm:max-w-[180px] md:max-w-[200px] lg:max-w-[160px] shadow-lg hover:shadow-xl hover-lift animate-slide-up animate-delay-100"
         @click="handleProjectsClick"
       >
         Ver Projetos
@@ -16,20 +16,18 @@
         variant="outline" 
         size="md" 
         icon="heroicons:document-arrow-down"
-        class="w-full sm:flex-1 sm:max-w-[180px] md:max-w-[200px] lg:max-w-[180px] hover-lift animate-slide-up animate-delay-200"
+        class="w-full sm:flex-1 sm:max-w-[180px] md:max-w-[200px] lg:max-w-[160px] hover-lift animate-slide-up animate-delay-200"
         @click="downloadCVDirect"
       >
         Baixar CV
       </Button>
-    </div>
-    
-    <!-- Segunda linha: Botão Contato sozinho -->
-    <div class="flex justify-center lg:justify-start">
+      
+      <!-- Botão Contato agora na mesma linha no desktop -->
       <Button 
         variant="ghost" 
         size="md" 
         icon="heroicons:chat-bubble-left-right"
-        class="w-full sm:w-auto sm:min-w-[160px] md:min-w-[180px] lg:min-w-[160px] max-w-[200px] hover-lift animate-slide-up animate-delay-300"
+        class="w-full sm:w-auto sm:min-w-[160px] md:min-w-[180px] lg:min-w-[140px] lg:max-w-[160px] hover-lift animate-slide-up animate-delay-300"
         @click="handleContactClick"
       >
         Contato

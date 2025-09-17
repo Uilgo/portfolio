@@ -1,19 +1,21 @@
 <template>
-  <div class="flex flex-col items-center">
-    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+  <div class="flex flex-col items-center justify-center space-y-2">
+    <p class="text-sm text-gray-500 dark:text-gray-400 text-center leading-tight">
       {{ text }}
     </p>
     
-    <button 
-      @click="handleScrollClick"
-      class="group p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-      :aria-label="ariaLabel"
-    >
-      <Icon 
-        name="heroicons:chevron-down" 
-        class="w-6 h-6 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 animate-bounce transition-colors" 
-      />
-    </button>
+    <div class="flex items-center justify-center">
+      <button 
+        @click="handleScrollClick"
+        class="group p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
+        :aria-label="ariaLabel"
+      >
+        <Icon 
+          name="heroicons:chevron-down" 
+          class="w-6 h-6 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 animate-bounce transition-colors" 
+        />
+      </button>
+    </div>
   </div>
 </template>
 

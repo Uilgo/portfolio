@@ -30,17 +30,17 @@
           
           <!-- Tech Stack Preview - Melhor espaçamento para tablet -->
           <div class="mt-8 md:mt-12 lg:mt-16 flex flex-wrap gap-3 md:gap-4 justify-center max-w-md md:max-w-lg">
-            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:nextdotjs" class="w-4 h-4 md:w-5 md:h-5 text-white" />
-              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Next.js</span>
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 lg:px-3 lg:py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 lg:gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:nextdotjs" class="w-4 h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 text-white" />
+              <span class="text-sm md:text-base lg:text-sm text-gray-600 dark:text-gray-300 font-medium">Next.js</span>
             </div>
-            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:nuxtdotjs" class="w-4 h-4 md:w-5 md:h-5 text-green-400" />
-              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Nuxt.js</span>
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 lg:px-3 lg:py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 lg:gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:nuxtdotjs" class="w-4 h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 text-green-400" />
+              <span class="text-sm md:text-base lg:text-sm text-gray-600 dark:text-gray-300 font-medium">Nuxt.js</span>
             </div>
-            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
-              <Icon name="simple-icons:supabase" class="w-4 h-4 md:w-5 md:h-5 text-green-500" />
-              <span class="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Supabase</span>
+            <div class="tech-badge px-3 py-2 md:px-4 md:py-2.5 lg:px-3 lg:py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10 flex items-center gap-2 md:gap-3 lg:gap-2 transition-all duration-200 hover:bg-white/20 dark:hover:bg-white/10">
+              <Icon name="simple-icons:supabase" class="w-4 h-4 md:w-5 md:h-5 lg:w-4 lg:h-4 text-green-500" />
+              <span class="text-sm md:text-base lg:text-sm text-gray-600 dark:text-gray-300 font-medium">Supabase</span>
             </div>
           </div>
         </div>

@@ -3,6 +3,9 @@
     <!-- Background Gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition-colors duration-500" />
     
+    <!-- Animated Particles -->
+    <AnimatedParticles />
+    
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 overflow-hidden">
       <div 
@@ -20,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import AnimatedParticles from '~/components/ui/AnimatedParticles.vue'
+
 // Configuração dos blobs animados para o background
 const blobs = [
   {

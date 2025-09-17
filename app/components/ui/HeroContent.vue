@@ -36,14 +36,6 @@ const props = withDefaults(defineProps<Props>(), {
 const taglineVariations = [
   'Desenvolvedor Frontend',
   'Desenvolvedor No-Code',
-  'Desenvolvedor Low-Code',
-  'IA Componentizada e Modular'
-]
-
-// Variações para mobile (sem o texto longo)
-const taglineVariationsMobile = [
-  'Desenvolvedor Frontend',
-  'Desenvolvedor No-Code',
   'Desenvolvedor Low-Code'
 ]
 
@@ -53,7 +45,7 @@ const currentTaglines = ref<string[]>([])
 onMounted(() => {
   const checkMobile = () => {
     const isMobile = window.innerWidth < 768
-    currentTaglines.value = isMobile ? taglineVariationsMobile : taglineVariations
+    currentTaglines.value = taglineVariations
   }
 
   checkMobile() // Define o valor inicial
@@ -150,10 +142,14 @@ const { finalText: displayTagline } = useTypewriter(currentTaglines, {
   .tagline-wrapper {
     height: 2.25rem;
     margin-bottom: 0.75rem;
+    text-align: center;
   }
   
   .tagline-text {
     font-size: clamp(1.75rem, 5.5vw, 2.25rem);
+    position: static;
+    left: auto;
+    transform: none;
   }
   
   .hero-content p {
@@ -173,10 +169,14 @@ const { finalText: displayTagline } = useTypewriter(currentTaglines, {
   .tagline-wrapper {
     height: 2.75rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
   
   .tagline-text {
     font-size: clamp(2.25rem, 4.5vw, 2.75rem);
+    position: static;
+    left: auto;
+    transform: none;
   }
   
   .hero-content p {
@@ -193,11 +193,11 @@ const { finalText: displayTagline } = useTypewriter(currentTaglines, {
   }
   
   .tagline-wrapper {
-    height: 3rem;
+    height: 2.5rem; /* Reduzido de 3rem para 2.5rem */
   }
   
   .tagline-text {
-    font-size: clamp(2.5rem, 3.5vw, 3rem);
+    font-size: clamp(2rem, 2.8vw, 2.5rem); /* Reduzido para evitar corte do texto */
   }
 }
 </style>

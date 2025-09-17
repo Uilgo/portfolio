@@ -1,11 +1,4 @@
 <template>
-  <!-- Loading Screen -->
-  <LoadingScreen 
-    :is-visible="isLoading"
-    :messages="loadingMessages"
-    @complete="handleLoadingComplete"
-  />
-
   <NuxtLayout>
     <NuxtRouteAnnouncer />
     <NuxtPage />
@@ -13,29 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { watch, onMounted, nextTick } from 'vue'
-import { useLoading } from '~/composables/useLoading'
-import LoadingScreen from '~/components/ui/LoadingScreen.vue'
-
-// Loading state
-const { isLoading, simulateLoading } = useLoading('app')
-
-// Mensagens de loading
-const loadingMessages = [
-  'Inicializando portfólio...',
-  'Carregando experiências...',
-  'Preparando projetos...',
-  'Configurando animações...',
-  'Pronto!'
-]
+import { watch, onMounted } from 'vue'
 
 // Garantir que o color-mode seja inicializado
 const colorMode = useColorMode()
-
-// Handler para loading completo
-const handleLoadingComplete = () => {
-  // Loading finalizado, o componente já se esconde automaticamente
-}
 
 // Aplicar classes no elemento HTML
 onMounted(() => {
@@ -50,20 +24,5 @@ onMounted(() => {
   
   // Observar mudanças no tema
   watch(() => colorMode.value, applyTheme, { immediate: true })
-
-  // Simular loading inicial (apenas na primeira visita)
-  // Aguardar próximo tick para garantir hidratação completa
-  nextTick(() => {
-    try {
-      const hasVisited = sessionStorage.getItem('portfolio-visited')
-      if (!hasVisited) {
-        simulateLoading(2500, loadingMessages)
-        sessionStorage.setItem('portfolio-visited', 'true')
-      }
-    } catch (error) {
-      // Fallback se sessionStorage não estiver disponível
-      console.warn('SessionStorage não disponível:', error)
-    }
-  })
 })
 </script>
