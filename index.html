@@ -129,7 +129,7 @@
     </style>
 
     <!-- Preload recursos críticos -->
-    <link rel='preload' href='assets/css/main.css' as='style'>
+    <link rel='preload' href='assets/css/main.min.css' as='style'>
     <link rel='preload' href='assets/images/igor-profiles.webp' as='image'>
     <link rel='preload' href='assets/js/utils/icons.js' as='script'>
 
@@ -141,8 +141,11 @@
         <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
     </noscript>
 
-    <!-- CSS Único Consolidado - Elimina flash de carregamento -->
-    <link rel='stylesheet' href='assets/css/main.css?v=5'>
+    <!-- CSS Único Consolidado - Carregamento assíncrono -->
+    <link rel='stylesheet' href='assets/css/main.min.css?v=6' media="print" onload="this.media='all'">
+    <noscript>
+        <link rel='stylesheet' href='assets/css/main.min.css?v=6'>
+    </noscript>
 
     <!-- Simple Icons Inline (apenas os 4 usados - economia de 989KB!) -->
     <style>
@@ -230,6 +233,8 @@
                         <div class="hero-avatar-wrapper">
                             <div class="hero-avatar">
                                 <img src="assets/images/igor-profiles.webp"
+                                    srcset="assets/images/igor-profiles.webp 480w"
+                                    sizes="(max-width: 768px) 192px, 240px"
                                     alt="Foto de perfil de Igor Elias, desenvolvedor fullstack" width="240" height="240"
                                     loading="eager">
                             </div>
@@ -776,7 +781,7 @@
     <script src="assets/js/components/typewriter.js?v=2" defer></script>
     <script src="assets/js/components/scroll.js?v=2" defer></script>
     <script src="assets/js/components/form.js?v=2" defer></script>
-    <script src="assets/js/components/particles.js?v=2" defer></script>
+    <script src="assets/js/components/particles.js?v=2" defer async></script>
     <script src="assets/js/main.js?v=2" defer></script>
 
     <!-- Initialize Icons -->
