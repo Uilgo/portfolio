@@ -97,7 +97,8 @@
             background: var(--background);
             color: var(--foreground);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased
+            -webkit-font-smoothing: antialiased;
+            transition: background-color .3s ease, color .3s ease
         }
 
         .header {
@@ -108,7 +109,8 @@
             z-index: var(--z-header);
             background: var(--background-card);
             border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(8px)
+            backdrop-filter: blur(8px);
+            transition: all .3s ease
         }
 
         .container {
@@ -127,8 +129,7 @@
     </style>
 
     <!-- Preload recursos críticos -->
-    <link rel='preload' href='assets/css/variables.css' as='style'>
-    <link rel='preload' href='assets/css/base.css' as='style'>
+    <link rel='preload' href='assets/css/styles-full.css' as='style'>
     <link rel='preload' href='assets/images/igor-profiles.webp' as='image'>
     <link rel='preload' href='assets/js/utils/icons.js' as='script'>
 
@@ -140,20 +141,8 @@
         <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
     </noscript>
 
-    <link rel='stylesheet' href='assets/css/reset.css?v=2' media="print" onload="this.media='all'">
-    <link rel='stylesheet' href='assets/css/variables.css?v=2' media="print" onload="this.media='all'">
-    <link rel='stylesheet' href='assets/css/base.css?v=2' media="print" onload="this.media='all'">
-    <link rel='stylesheet' href='assets/css/components.css?v=2' media="print" onload="this.media='all'">
-    <link rel='stylesheet' href='assets/css/animations.css?v=2' media="print" onload="this.media='all'">
-    <link rel='stylesheet' href='assets/css/main.css?v=2' media="print" onload="this.media='all'">
-    <noscript>
-        <link rel='stylesheet' href='assets/css/reset.css'>
-        <link rel='stylesheet' href='assets/css/variables.css'>
-        <link rel='stylesheet' href='assets/css/base.css'>
-        <link rel='stylesheet' href='assets/css/components.css'>
-        <link rel='stylesheet' href='assets/css/animations.css'>
-        <link rel='stylesheet' href='assets/css/main.css'>
-    </noscript>
+    <!-- CSS Único Consolidado - Elimina flash de carregamento -->
+    <link rel='stylesheet' href='assets/css/styles-full.css?v=3'>
 
     <!-- Simple Icons Inline (apenas os 4 usados - economia de 989KB!) -->
     <style>
