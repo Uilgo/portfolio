@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script>
+        // Prevenir "flash" de tema claro
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- SEO Básico -->
+    <title>Igor Elias | Desenvolvedor Fullstack</title>
+    <meta name='description'
+        content='Igor Elias - Desenvolvedor Fullstack especializado em React, Vue, TypeScript, Supabase e soluções com IA estruturada.'>
+    <meta name='keywords'
+        content='Igor Elias, Desenvolvedor Fullstack, Frontend, Backend, React, Vue, Nuxt, TypeScript, Supabase, Inteligência Artificial, Desenvolvimento Web, Portfolio'>
+    <meta name='author' content='Igor Elias'>
+    <meta name='robots' content='index, follow'>
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property='og:type' content='website'>
+    <meta property='og:url' content='https://igorelias.vercel.app/'>
+    <meta property='og:title' content='Igor Elias | Desenvolvedor Fullstack'>
+    <meta property='og:description'
+        content='Desenvolvedor Fullstack especializado em criar soluções web modernas e escaláveis. Conheça meu portfólio e projetos.'>
+    <meta property='og:image' content='assets/images/igor-profiles.webp'>
+
+    <!-- Twitter Card -->
+    <meta property='twitter:card' content='summary_large_image'>
+    <meta property='twitter:url' content='https://igorelias.vercel.app/'>
+    <meta property='twitter:title' content='Igor Elias | Desenvolvedor Fullstack'>
+    <meta property='twitter:description'
+        content='Desenvolvedor Fullstack especializado em criar soluções web modernas e escaláveis. Conheça meu portfólio e projetos.'>
+    <meta property='twitter:image' content='assets/images/igor-profiles.webp'>
+
+    <link rel='icon' type='image/svg+xml' href='assets/images/favicon.svg'>
+
+    <!-- CSS Crítico Inline -->
+    <style>
+        :root {
+            --background: #f9fafb;
+            --background-card: #fff;
+            --foreground: #111827;
+            --foreground-secondary: #374151;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --text-base: 1rem;
+            --text-sm: .875rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --space-2: .5rem;
+            --space-3: .75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --radius-lg: .75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.25rem;
+            --radius-full: 9999px;
+            --transition-base: 200ms ease;
+            --z-header: 100
+        }
+
+        [data-theme=dark] {
+            --background: #0f172a;
+            --background-card: #1e293b;
+            --foreground: #f9fafb;
+            --foreground-secondary: #cbd5e1;
+            --primary: #3b82f6;
+            --border: #334155;
+            --border-light: #1e293b
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-header);
+            background: var(--background-card);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px)
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 60px
+        }
+    </style>
+
+    <!-- Preload recursos críticos -->
+    <link rel='preload' href='assets/css/variables.css' as='style'>
+    <link rel='preload' href='assets/css/base.css' as='style'>
+    <link rel='preload' href='assets/images/igor-profiles.webp' as='image'>
+    <link rel='preload' href='assets/js/utils/icons.js' as='script'>
+
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+    </noscript>
+
+    <link rel='stylesheet' href='assets/css/reset.css?v=2' media="print" onload="this.media='all'">
+    <link rel='stylesheet' href='assets/css/variables.css?v=2' media="print" onload="this.media='all'">
+    <link rel='stylesheet' href='assets/css/base.css?v=2' media="print" onload="this.media='all'">
+    <link rel='stylesheet' href='assets/css/components.css?v=2' media="print" onload="this.media='all'">
+    <link rel='stylesheet' href='assets/css/animations.css?v=2' media="print" onload="this.media='all'">
+    <link rel='stylesheet' href='assets/css/main.css?v=2' media="print" onload="this.media='all'">
+    <noscript>
+        <link rel='stylesheet' href='assets/css/reset.css'>
+        <link rel='stylesheet' href='assets/css/variables.css'>
+        <link rel='stylesheet' href='assets/css/base.css'>
+        <link rel='stylesheet' href='assets/css/components.css'>
+        <link rel='stylesheet' href='assets/css/animations.css'>
+        <link rel='stylesheet' href='assets/css/main.css'>
+    </noscript>
+
+    <!-- Simple Icons Inline (apenas os 4 usados - economia de 989KB!) -->
+    <style>
+        .si {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+            vertical-align: middle
+        }
+
+        .si-whatsapp {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2325D366' d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain
+        }
+
+        .si-nextdotjs {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 01-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 00-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 00-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 01-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 01-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 01.174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 004.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 002.466-2.163 11.944 11.944 0 002.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 00-2.499-.523A33.119 33.119 0 0011.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 01.237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 01.233-.296c.096-.05.13-.054.5-.054z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain
+        }
+
+        .si-nuxtdotjs {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2300DC82' d='M19.724 20.272l-3.524-6.187-1.408 2.476 2.724 4.783H6.116L12 9.688l3.525 6.187 1.408-2.476L12.758 6.4 12 5.12 6.116 15.09H2.291L12 0l9.709 17.024h-2.985z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain
+        }
+
+        .si-supabase {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233ECF8E' d='M21.362 9.354H12V.396a.396.396 0 00-.716-.233L2.203 12.424l-.401.562a1.04 1.04 0 00.836 1.659H12v8.959a.396.396 0 00.716.233l9.081-12.261.401-.562a1.04 1.04 0 00-.836-1.66z'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#hero" class="logo" aria-label="Igor Elias - Voltar ao início">IE</a>
+
+                <nav class="header-nav">
+                    <ul class="nav-links">
+                        <li><a href="#about" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                        <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Habilidades</a></li>
+                        <li><a href="#projetos" class="nav-link" data-i18n="nav.projects">Projetos</a></li>
+                        <li><a href="#contato" class="nav-link" data-i18n="nav.contact">Contato</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="lang-toggle" id="lang-toggle" aria-label="Change language">
+                        PT
+                    </button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                        <i data-lucide="sun" class="theme-icon theme-icon-light"></i>
+                        <i data-lucide="moon" class="theme-icon theme-icon-dark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero" aria-label="Seção principal de apresentação">
+            <div class="hero-background" aria-hidden="true"></div>
+            <canvas id="particles-canvas" class="particles-canvas" aria-hidden="true"></canvas>
+
+            <div class="container">
+
+
+                <div class="hero-grid">
+                    <div class="hero-avatar-col">
+                        <div class="hero-avatar-wrapper">
+                            <div class="hero-avatar">
+                                <img src="assets/images/igor-profiles.webp"
+                                    alt="Foto de perfil de Igor Elias, desenvolvedor fullstack" width="240" height="240"
+                                    loading="eager">
+                            </div>
+                            <div class="hero-icon hero-icon-1" aria-hidden="true">
+                                <i data-lucide="code-2"></i>
+                            </div>
+                            <div class="hero-icon hero-icon-2" aria-hidden="true">
+                                <i data-lucide="rocket"></i>
+                            </div>
+                        </div>
+
+                        <div class="tech-badges">
+                            <!-- Next.js -->
+                            <div class="tech-badge">
+                                <i class="si si-nextdotjs"></i>
+                                <span>Next.js</span>
+                            </div>
+                            <!-- Nuxt.js -->
+                            <div class="tech-badge">
+                                <i class="si si-nuxtdotjs"></i>
+                                <span>Nuxt.js</span>
+                            </div>
+                            <!-- Supabase -->
+                            <div class="tech-badge">
+                                <i class="si si-supabase"></i>
+                                <span>Supabase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-content-col">
+                        <h1 class="hero-title">
+                            <span class="hero-name" data-i18n="hero.name">Igor Elias</span>
+                            <span class="hero-tagline" id="typewriter"></span>
+                        </h1>
+
+                        <p class="hero-description" data-i18n="hero.description">
+                            Transformo ideias em soluções digitais com Frontend moderno, Backend com Supabase e
+                            desenvolvimento assistido por IA.
+                            Experiência em criar interfaces e sistemas completos que conectam tecnologia e experiência
+                            do usuário. 🚀
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#projetos" class="btn btn-primary">
+                                <i data-lucide="folder-open"></i>
+                                <span data-i18n="hero.btn.projects">Ver Projetos</span>
+                            </a>
+                            <button class="btn btn-secondary" id="download-cv">
+                                <i data-lucide="download"></i>
+                                <span data-i18n="hero.btn.cv">Baixar CV</span>
+                            </button>
+                            <a href="#contato" class="btn btn-ghost">
+                                <i data-lucide="mail"></i>
+                                <span data-i18n="hero.btn.contact">Contato</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-social">
+                            <a href="https://github.com/Uilgo" target="_blank" rel="noopener noreferrer"
+                                class="social-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank"
+                                rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="mailto:igorelias.pro@gmail.com" class="social-link" aria-label="Email">
+                                <i data-lucide="mail"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-indicator" aria-label="Rolar para a seção sobre">
+                <span data-i18n="hero.scroll">Role para baixo</span>
+                <div class="scroll-arrow" aria-hidden="true">
+                    <i data-lucide="chevron-down"></i>
+                </div>
+            </a>
+        </section>
+        <!-- About Section -->
+        <section class="section about-section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="about-title" data-i18n="about.title">Sobre Mim</h2>
+                    <p class="section-subtitle" data-i18n="about.subtitle">Conheça um pouco mais sobre minha trajetória
+                        e experiência</p>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Coluna esquerda: texto descritivo + cards de valores -->
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p data-i18n="about.text.1" data-i18n-html>Sou <strong>Desenvolvedor Fullstack</strong> com
+                                foco em soluções práticas e eficientes.
+                                Utilizo IA como ferramenta de apoio para desenvolver sistemas de modo estruturado,
+                                componentizado e modularizado.</p>
+                            <p data-i18n="about.text.2" data-i18n-html>Tenho experiência prévia com plataformas No-Code
+                                (Bubble, WeWeb) e hoje foco exclusivamente em desenvolvimento high-code com
+                                <strong>React</strong>, <strong>Vue</strong>, <strong>Node.js</strong> e
+                                <strong>Supabase</strong>, garantindo escalabilidade e segurança.
+                                Minha abordagem permite criar sistemas completos com organização e controle, aliando
+                                criatividade e planejamento para entregar experiências de usuário funcionais
+                                e sustentadas por arquiteturas bem estruturadas.
+                            </p>
+                        </div>
+
+                        <!-- Grid 2x2 de valores — layout horizontal (ícone + texto) -->
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <div class="value-icon value-icon--purple">
+                                    <i data-lucide="heart"></i>
+                                </div>
+                                <div class="value-body">
+                                    <div class="value-title" data-i18n="about.value.empathy">Empatia</div>
+                                    <p data-i18n="about.value.empathy.desc">Sempre penso na experiência do usuário final
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon value-icon--blue">
+                                    <i data-lucide="users"></i>
+                                </div>
+                                <div class="value-body">
+                                    <div class="value-title" data-i18n="about.value.collaboration">Colaboração</div>
+                                    <p data-i18n="about.value.collaboration.desc">Trabalho em equipe para alcançar os
+                                        melhores resultados</p>
+                                </div>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon value-icon--orange">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                                <div class="value-body">
+                                    <div class="value-title" data-i18n="about.value.learning">Aprendizado</div>
+                                    <p data-i18n="about.value.learning.desc">Sempre em busca de novas tecnologias e
+                                        conhecimentos</p>
+                                </div>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon value-icon--yellow">
+                                    <i data-lucide="star"></i>
+                                </div>
+                                <div class="value-body">
+                                    <div class="value-title" data-i18n="about.value.excellence">Excelência</div>
+                                    <p data-i18n="about.value.excellence.desc">Compromisso com qualidade em cada linha
+                                        de código</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna direita: cards de info -->
+                    <div class="about-sidebar">
+                        <!-- Card Localização -->
+                        <div class="info-card">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div>
+                                    <h3 data-i18n="about.location.title">Localização & Trabalho</h3>
+                                </div>
+                            </div>
+                            <ul class="info-list">
+                                <li><span class="info-emoji">📍</span> <span data-i18n="about.location.country">Brasil,
+                                        Rio Grande do Norte</span></li>
+                                <li><span class="info-emoji">🌐</span> <span data-i18n="about.location.remote">Trabalho
+                                        remoto</span></li>
+                                <li><span class="info-emoji">🕐</span> <span data-i18n="about.location.timezone">Fuso
+                                        horário: UTC-3</span></li>
+                            </ul>
+                            <div class="availability-badge">
+                                <div class="availability-dot"></div>
+                                <span data-i18n="about.location.available">Disponível para novos projetos</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Timeline -->
+                        <div class="info-card">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <i data-lucide="calendar"></i>
+                                </div>
+                                <div>
+                                    <h3 data-i18n="about.timeline.title">Timeline de Carreira</h3>
+                                    <p class="info-card-subtitle" data-i18n="about.timeline.subtitle">Principais marcos
+                                        profissionais</p>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-year" data-i18n="about.timeline.2025">2025 - Presente</div>
+                                        <div class="timeline-text" data-i18n="about.timeline.2025.text">IA Estruturada,
+                                            Componentizada e Modularizada</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-year" data-i18n="about.timeline.2023">2023</div>
+                                        <div class="timeline-text" data-i18n="about.timeline.2023.text">Experiência com
+                                            No-Code/Low-Code (Bubble, WeWeb)</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-year" data-i18n="about.timeline.2021">2021</div>
+                                        <div class="timeline-text" data-i18n="about.timeline.2021.text">Início com
+                                            JavaScript, React e desenvolvimento Frontend</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Interesses -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="skills-title" data-i18n="skills.title">Habilidades &amp; Tecnologias
+                    </h2>
+                    <p class="section-subtitle" data-i18n="skills.subtitle">Tecnologias e ferramentas que utilizo para
+                        criar soluções modernas</p>
+                </div>
+
+                <!-- Card destaque — IA Estruturada -->
+                <div class="ia-highlight">
+                    <div class="ia-header">
+                        <div class="ia-icon">
+                            <i data-lucide="brain"></i>
+                        </div>
+                        <div class="ia-title-wrapper">
+                            <h3 data-i18n="skills.ia.title">IA Estruturada</h3>
+                            <span class="ia-badge">
+                                <i data-lucide="zap"></i> <span data-i18n="skills.ia.badge">Diferencial</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="ia-description" data-i18n="skills.ia.description">Desenvolvimento assistido por
+                        inteligência artificial</p>
+                    <p class="ia-text" data-i18n="skills.ia.text" data-i18n-html><strong>Abordagem única:</strong>
+                        Estruturo projetos corretamente utilizando IA
+                        como ferramenta de apoio no desenvolvimento componentizado e modular.</p>
+
+                    <div class="ia-features">
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="puzzle"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.1">Arquitetura Componentizada
+                                </div>
+                                <p data-i18n="skills.ia.feature.1.desc">Estruturação modular e escalável</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.2">Aprendizado Contínuo</div>
+                                <p data-i18n="skills.ia.feature.2.desc">Crescimento técnico constante</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="code-2"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.3">Code Review Assistido</div>
+                                <p data-i18n="skills.ia.feature.3.desc">Refatoração com suporte de IA</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="refresh-cw"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.4">Workflow Integrado</div>
+                                <p data-i18n="skills.ia.feature.4.desc">IA no processo de desenvolvimento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de categorias de skills -->
+                <div class="skills-categories">
+                    <!-- Frontend -->
+                    <div class="skill-category skill-category-frontend">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--purple">
+                                <i data-lucide="monitor"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.frontend.title">Desenvolvimento Frontend</h3>
+                                <p data-i18n="skills.frontend.desc">Interfaces modernas e responsivas</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">React</span></div>
+                            <div class="skill-item"><span class="skill-name">Vue</span></div>
+                            <div class="skill-item"><span class="skill-name">Next.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Nuxt.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Tailwind CSS</span></div>
+                            <div class="skill-item"><span class="skill-name">TypeScript</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Backend & BaaS -->
+                    <div class="skill-category skill-category-backend">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--blue">
+                                <i data-lucide="database"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.backend.title">Backend &amp; BaaS</h3>
+                                <p data-i18n="skills.backend.desc">APIs, banco de dados e infraestrutura</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">Node.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Supabase</span></div>
+                            <div class="skill-item"><span class="skill-name">Firebase</span></div>
+                            <div class="skill-item"><span class="skill-name">PostgreSQL</span></div>
+                            <div class="skill-item"><span class="skill-name">REST APIs</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Ferramentas Essenciais -->
+                    <div class="skill-category skill-category-tools">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--green">
+                                <i data-lucide="wrench"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.tools.title">Ferramentas Essenciais</h3>
+                                <p data-i18n="skills.tools.desc">Workflow otimizado</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">Git/GitHub</span></div>
+                            <div class="skill-item"><span class="skill-name">Vercel</span></div>
+                            <div class="skill-item"><span class="skill-name">Figma</span></div>
+                            <div class="skill-item"><span class="skill-name">VS Code</span></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="section projects-section" id="projetos" aria-labelledby="projects-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="projects-title" data-i18n="projects.title">Meus Projetos</h2>
+                    <p class="section-subtitle" data-i18n="projects.subtitle">Alguns dos projetos que desenvolvi
+                        utilizando as mais modernas tecnologias</p>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be inserted by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section class="section contact-section" id="contato" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="contact-title" data-i18n="contact.title">Vamos Conversar?</h2>
+                    <p class="section-subtitle" data-i18n="contact.subtitle">Estou sempre aberto a novas oportunidades e
+                        projetos interessantes</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3 data-i18n="contact.info.title">Informações de Contato</h3>
+
+                        <div class="contact-cards">
+                            <a href="mailto:igorelias.pro@gmail.com" class="contact-card contact-card-blue">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.email">Email</h4>
+                                    <p>igorelias.pro@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/5584996551792" target="_blank" rel="noopener noreferrer"
+                                class="contact-card contact-card-green">
+                                <div class="contact-card-icon">
+                                    <i class="si si-whatsapp"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.whatsapp">WhatsApp</h4>
+                                    <p>(84) 99655-1792</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank"
+                                rel="noopener noreferrer" class="contact-card contact-card-blue">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="linkedin"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.linkedin">LinkedIn</h4>
+                                    <p>/in/igor-elias-de-lima</p>
+                                </div>
+                            </a>
+
+                            <div class="contact-card contact-card-purple">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.location">Localização</h4>
+                                    <p data-i18n="contact.location.city">Santa Maria - RN, Brasil</p><small
+                                        data-i18n="contact.location.remote">Disponível para trabalho remoto</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="availability-card">
+                            <div class="availability-header">
+                                <div class="availability-dot-large"></div>
+                                <p data-i18n="contact.available">Disponível para novos projetos</p>
+                            </div>
+                            <p class="availability-text" data-i18n="contact.available.text">Atualmente aceitando
+                                freelances e oportunidades de trabalho em
+                                desenvolvimento Frontend e Fullstack.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <h3 data-i18n="contact.form.title">Envie uma Mensagem</h3>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="nome"><span data-i18n="contact.form.name">Nome</span> *</label>
+                                <input type="text" id="nome" name="nome" required
+                                    data-i18n="contact.form.name.placeholder" placeholder="Seu nome completo">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email"><span data-i18n="contact.form.email">Email</span> *</label>
+                                <input type="email" id="email" name="email" required
+                                    data-i18n="contact.form.email.placeholder" placeholder="seu.email@exemplo.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipo" data-i18n="contact.form.type">Tipo de Projeto</label>
+                                <select id="tipo" name="tipo">
+                                    <option value="" data-i18n="contact.form.type.placeholder">Selecione o tipo de
+                                        projeto</option>
+                                    <option value="fullstack" data-i18n="contact.form.type.fullstack">Aplicação Web
+                                        Fullstack</option>
+                                    <option value="frontend" data-i18n="contact.form.type.frontend">Desenvolvimento
+                                        Frontend</option>
+                                    <option value="outro" data-i18n="contact.form.type.other">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem"><span data-i18n="contact.form.message">Mensagem</span> *</label>
+                                <textarea id="mensagem" name="mensagem" rows="4" required
+                                    data-i18n="contact.form.message.placeholder"
+                                    placeholder="Descreva seu projeto ou dúvida..." maxlength="1000"></textarea>
+                                <span class="char-count"><span id="char-count">0</span>/1000</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                                    <i data-lucide="send"></i>
+                                    <span class="btn-text" data-i18n="contact.form.submit">Enviar Mensagem</span>
+                                    <span class="btn-loading" style="display: none;">
+                                        <i data-lucide="loader-2"></i>
+                                        <span data-i18n="contact.form.sending">Enviando...</span>
+                                    </span>
+                                </button>
+                                <a href="https://wa.me/5584996551792?text=Olá%20Igor,%20vim%20do%20seu%20portfólio"
+                                    target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"
+                                    aria-label="Enviar mensagem via WhatsApp">
+                                    <i class="si si-whatsapp"></i>
+                                    <span data-i18n="contact.form.whatsapp">WhatsApp</span>
+                                </a>
+                            </div>
+                        </form>
+
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <div class="success-icon">
+                                <i data-lucide="check-circle"></i>
+                            </div>
+                            <p><strong data-i18n="contact.form.success.title">Mensagem enviada com sucesso!</strong></p>
+                            <p data-i18n="contact.form.success.text">Retornarei o contato em breve. Obrigado!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="current-year"></span> Igor Elias. <span data-i18n="footer.rights">Todos os direitos
+                        reservados.</span></p>
+                <div class="footer-social">
+                    <a href="https://github.com/Uilgo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="mailto:igorelias.pro@gmail.com" aria-label="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sistema de ícones local (substitui Lucide) -->
+    <script src="assets/js/utils/icons.js?v=2"></script>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils/i18n.js?v=2" defer></script>
+    <script src="assets/js/utils/theme.js?v=2" defer></script>
+    <script src="assets/js/utils/dom.js?v=2" defer></script>
+    <script src="assets/js/components/typewriter.js?v=2" defer></script>
+    <script src="assets/js/components/scroll.js?v=2" defer></script>
+    <script src="assets/js/components/form.js?v=2" defer></script>
+    <script src="assets/js/components/particles.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=2" defer></script>
+
+    <!-- Initialize Icons -->
+    <script>
+        // Inicializar ícones quando o DOM estiver pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createIcons);
+        } else {
+            createIcons();
+        }
+    </script>
+</body>
+
+</html>
