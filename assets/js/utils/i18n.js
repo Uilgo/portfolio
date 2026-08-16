@@ -27,15 +27,41 @@ const translations = {
     "hero.social.linkedin": "LinkedIn",
     "hero.social.email": "Email",
     "hero.scroll": "Role para baixo",
+    "hero.card.stack.title": "Stack",
+    "hero.card.deliver.title": "Entrego",
+    "hero.card.deliver.1": "UI responsiva",
+    "hero.card.deliver.2": "Código limpo",
+    "hero.card.deliver.3": "Prazo cumprido",
+    "hero.card.status.title": "Status",
+    "hero.card.status.badge": "Open",
+    "hero.card.status.1": "Freelance",
+    "hero.card.status.2": "Remoto",
+    "hero.card.status.3": "Tempo integral",
+    "hero.card.ia.title": "IA Dev",
+    "hero.card.ia.1": "Código componentizado",
+    "hero.card.ia.2": "Arquitetura modular",
+    "hero.card.ia.3": "Code review assistido",
 
     // About Section
     "about.title": "Sobre Mim",
     "about.subtitle":
       "Conheça um pouco mais sobre minha trajetória e experiência",
+    "about.role": "Desenvolvedor <strong>Fullstack</strong>",
     "about.text.1":
       "Sou <strong>Desenvolvedor Fullstack</strong> com foco em soluções práticas e eficientes. Utilizo IA como ferramenta de apoio para desenvolver sistemas de modo estruturado, componentizado e modularizado.",
     "about.text.2":
-      "Tenho experiência prévia com plataformas No-Code (Bubble, WeWeb) e hoje foco exclusivamente em desenvolvimento high-code com <strong>React</strong>, <strong>Vue</strong>, <strong>Node.js</strong> e <strong>Supabase</strong>, garantindo escalabilidade e segurança. Minha abordagem permite criar sistemas completos com organização e controle, aliando criatividade e planejamento para entregar experiências de usuário funcionais e sustentadas por arquiteturas bem estruturadas.",
+      "Com sólida base e experiência prática prévia em soluções ágeis, hoje atuo no desenvolvimento <strong>High-Code</strong> com <strong>React</strong>, <strong>Next.js</strong>, <strong>Vue</strong>, <strong>Nuxt</strong>, <strong>Node.js</strong>, <strong>Tailwind CSS</strong>, <strong>PostgreSQL</strong> e <strong>Supabase</strong>. Minha abordagem une código modularizado, componentização avançada e arquitetura escalável com suporte de <strong>IA estruturada</strong>.",
+    "about.journey.title": "Evolução & Stack Atual",
+    "about.journey.subtitle": "Arquitetura Fullstack High-Code & IA",
+    "about.journey.1.title": "Frontend Moderno:",
+    "about.journey.1.desc": "Aplicações com React, Next.js, Vue, Nuxt e Tailwind CSS.",
+    "about.journey.2.title": "Backend & Banco de Dados:",
+    "about.journey.2.desc": "APIs e regras em Node.js, PostgreSQL e Supabase.",
+    "about.journey.3.title": "Arquitetura & IA:",
+    "about.journey.3.desc": "Sistemas componentizados, modulares e escaláveis com IA.",
+    "about.journey.pill.ia": "IA Modular",
+    "about.values.title": "Valores & Princípios",
+    "about.values.subtitle": "Diretrizes em cada linha de código",
     "about.value.empathy": "Empatia",
     "about.value.empathy.desc": "Sempre penso na experiência do usuário final",
     "about.value.collaboration": "Colaboração",
@@ -50,18 +76,18 @@ const translations = {
     "about.location.country": "Brasil, Rio Grande do Norte",
     "about.location.remote": "Trabalho remoto",
     "about.location.timezone": "Fuso horário: UTC-3",
-    "about.location.available": "Disponível para novos projetos",
+    "about.location.available": "Disponível para projetos",
     "about.timeline.title": "Timeline de Carreira",
     "about.timeline.subtitle": "Principais marcos profissionais",
     "about.timeline.2025": "2025 - Presente",
     "about.timeline.2025.text":
-      "Desenvolvimento Fullstack escalável com auxílio de Inteligência Artificial",
+      "Desenvolvimento Fullstack moderno & IA Estruturada e Modularizada",
     "about.timeline.2023": "2023",
     "about.timeline.2023.text":
-      "Foco no desenvolvimento ágil utilizando No-Code e Low-Code",
+      "Experiência prática prévia com No-Code e prototipagem ágil",
     "about.timeline.2021": "2021",
     "about.timeline.2021.text":
-      "Início da trajetória tecnológica com JavaScript e o desenvolvimento Frontend",
+      "Início da trajetória tecnológica com JavaScript e o ecossistema Frontend",
     "about.hobbies.title": "Interesses Pessoais",
     "about.hobby.gaming": "Gaming",
     "about.hobby.reading": "Leitura Técnica",
@@ -99,7 +125,11 @@ const translations = {
     // Projects Section
     "projects.title": "Meus Projetos",
     "projects.subtitle":
-      "Alguns dos projetos que desenvolvi utilizando as mais modernas tecnologias",
+      "Aplicações completas desenvolvidas com arquitetura escalável e foco na experiência real do usuário.",
+    "projects.badge": "Trabalhos Selecionados",
+    "projects.title.line1": "Mais do que um portfólio.",
+    "projects.title.line2": "Soluções que entregam resultado.",
+    "projects.scroll": "Role para explorar",
     "projects.status.completed": "Concluído",
     "projects.status.development": "Em Desenvolvimento",
     "projects.modal.challenge": "Desafio",
@@ -108,6 +138,7 @@ const translations = {
     "projects.modal.features": "Funcionalidades",
     "projects.modal.view": "Ver Projeto",
     "projects.modal.github": "GitHub",
+    "projects.button.access": "Acessar Projeto",
 
     // Contact Section
     "contact.title": "Vamos Conversar?",
@@ -145,6 +176,9 @@ const translations = {
     "footer.rights": "Todos os direitos reservados.",
 
     // Projects
+    "projects.cardapio-digital.title": "Cardápio Digital - Sistema de Pedidos Online",
+    "projects.cardapio-digital.description":
+      "Plataforma interativa de cardápio digital com seleção de categorias, carrinho dinâmico e integração completa para pedidos.",
     "projects.petbath.title": "PetBath - Sistema de Agendamento",
     "projects.petbath.description":
       "Sistema completo para gerenciamento de serviços de banho e cuidados para pets com interface intuitiva e responsiva.",
@@ -185,14 +219,40 @@ const translations = {
     "hero.social.linkedin": "LinkedIn",
     "hero.social.email": "Email",
     "hero.scroll": "Scroll down",
+    "hero.card.stack.title": "Stack",
+    "hero.card.deliver.title": "Deliverables",
+    "hero.card.deliver.1": "Responsive UI",
+    "hero.card.deliver.2": "Clean code",
+    "hero.card.deliver.3": "On-time delivery",
+    "hero.card.status.title": "Status",
+    "hero.card.status.badge": "Open",
+    "hero.card.status.1": "Freelance",
+    "hero.card.status.2": "Remote",
+    "hero.card.status.3": "Full-time",
+    "hero.card.ia.title": "AI Dev",
+    "hero.card.ia.1": "Componentized code",
+    "hero.card.ia.2": "Modular architecture",
+    "hero.card.ia.3": "Assisted code review",
 
     // About Section
     "about.title": "About Me",
     "about.subtitle": "Learn more about my journey and experience",
+    "about.role": "<strong>Fullstack</strong> Developer",
     "about.text.1":
       "I am a <strong>Fullstack Developer</strong> focused on practical and efficient solutions. I use AI as a support tool to develop systems in a structured, componentized, and modularized way.",
     "about.text.2":
-      "I have previous experience with No-Code platforms (Bubble, WeWeb) and today I focus exclusively on high-code development with <strong>React</strong>, <strong>Vue</strong>, <strong>Node.js</strong> and <strong>Supabase</strong>, ensuring scalability and security. My approach allows for creating complete systems with organization and control, combining creativity and planning to deliver functional and well-structured user experiences.",
+      "With a solid foundation and previous practical experience in agile solutions, today I work in <strong>High-Code</strong> development with <strong>React</strong>, <strong>Next.js</strong>, <strong>Vue</strong>, <strong>Nuxt</strong>, <strong>Node.js</strong>, <strong>Tailwind CSS</strong>, <strong>PostgreSQL</strong>, and <strong>Supabase</strong>. My approach combines modular code, advanced componentization, and scalable architecture backed by <strong>structured AI</strong>.",
+    "about.journey.title": "Evolution & Current Stack",
+    "about.journey.subtitle": "High-Code Fullstack & AI Architecture",
+    "about.journey.1.title": "Modern Frontend:",
+    "about.journey.1.desc": "Applications with React, Next.js, Vue, Nuxt, and Tailwind CSS.",
+    "about.journey.2.title": "Backend & Database:",
+    "about.journey.2.desc": "APIs and business logic in Node.js, PostgreSQL, and Supabase.",
+    "about.journey.3.title": "Architecture & AI:",
+    "about.journey.3.desc": "Componentized, modular, and scalable systems powered by AI.",
+    "about.journey.pill.ia": "Modular AI",
+    "about.values.title": "Values & Principles",
+    "about.values.subtitle": "Guidelines in every line of code",
     "about.value.empathy": "Empathy",
     "about.value.empathy.desc": "Always thinking about the end user experience",
     "about.value.collaboration": "Collaboration",
@@ -206,18 +266,18 @@ const translations = {
     "about.location.country": "Brazil, Rio Grande do Norte",
     "about.location.remote": "Remote work",
     "about.location.timezone": "Timezone: UTC-3",
-    "about.location.available": "Available for new projects",
+    "about.location.available": "Available for projects",
     "about.timeline.title": "Career Timeline",
     "about.timeline.subtitle": "Key professional milestones",
     "about.timeline.2025": "2025 - Present",
     "about.timeline.2025.text":
-      "Scalable Fullstack development with Artificial Intelligence support",
+      "Modern Fullstack Development & Structured Modular AI",
     "about.timeline.2023": "2023",
     "about.timeline.2023.text":
-      "Focus on agile development using No-Code and Low-Code",
+      "Previous practical experience with No-Code and agile prototyping",
     "about.timeline.2021": "2021",
     "about.timeline.2021.text":
-      "Beginning of the tech journey with JavaScript and Frontend",
+      "Beginning of the tech journey with JavaScript and the Frontend ecosystem",
     "about.hobbies.title": "Personal Interests",
     "about.hobby.gaming": "Gaming",
     "about.hobby.reading": "Technical Reading",
@@ -254,7 +314,11 @@ const translations = {
     // Projects Section
     "projects.title": "My Projects",
     "projects.subtitle":
-      "Some of the projects I developed using the most modern technologies",
+      "Complete applications built with scalable architecture and focus on real user experience.",
+    "projects.badge": "Selected Works",
+    "projects.title.line1": "More than a portfolio.",
+    "projects.title.line2": "Solutions that deliver results.",
+    "projects.scroll": "Scroll to explore",
     "projects.status.completed": "Completed",
     "projects.status.development": "In Development",
     "projects.modal.challenge": "Challenge",
@@ -263,6 +327,7 @@ const translations = {
     "projects.modal.features": "Features",
     "projects.modal.view": "View Project",
     "projects.modal.github": "GitHub",
+    "projects.button.access": "Access Project",
 
     // Contact Section
     "contact.title": "Let's Talk?",
@@ -300,6 +365,9 @@ const translations = {
     "footer.rights": "All rights reserved.",
 
     // Projects
+    "projects.cardapio-digital.title": "Digital Menu - Online Ordering System",
+    "projects.cardapio-digital.description":
+      "Interactive digital menu platform with category filtering, dynamic shopping cart and seamless order checkout.",
     "projects.petbath.title": "PetBath - Scheduling System",
     "projects.petbath.description":
       "Complete system for managing pet grooming and care services with intuitive and responsive interface.",
@@ -358,10 +426,8 @@ const I18n = {
       window.typewriterInstance.updateTexts(this.getTypewriterTexts());
     }
 
-    // Re-render projects with new language
-    if (typeof renderProjects === "function") {
-      renderProjects();
-    }
+    // Re-render projects with new language — handled by projects.js
+    // (projects.js reads from I18n.t() at render time, no re-render needed)
 
     // Reinitialize Lucide icons after language change
     if (typeof lucide !== "undefined") {

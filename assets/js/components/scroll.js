@@ -31,20 +31,35 @@ const ScrollAnimations = {
 
   setupScrollReveal() {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll(".scroll-reveal").forEach((el) => {
-      observer.observe(el);
+    // Seleciona todas as seções (exceto projetos que tem conflito com GSAP pin), o footer e outros
+    const elementsToReveal = document.querySelectorAll("section:not(#projetos), .footer, .scroll-reveal");
+    
+    elementsToReveal.forEach((el) => {
+      if (!el.classList.contains("scroll-reveal")) {
+        el.classList.add("scroll-reveal");
+      }
+
+      // Se o elemento já estiver visível na viewport ao carregar (ex: Hero), revela imediatamente
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Pequeno delay para garantir que o CSS foi aplicado antes
+        requestAnimationFrame(() => el.classList.add("revealed"));
+      } else {
+        observer.observe(el);
+      }
     });
   },
 
