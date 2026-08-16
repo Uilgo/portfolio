@@ -389,6 +389,13 @@ const I18n = {
     this.detectLanguage();
     this.setupLanguageToggle();
     this.translate();
+    if (this.currentLang !== "pt-BR") {
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent("languageChange", { detail: { lang: this.currentLang } })
+        );
+      }, 50);
+    }
   },
 
   detectLanguage() {
@@ -426,8 +433,10 @@ const I18n = {
       window.typewriterInstance.updateTexts(this.getTypewriterTexts());
     }
 
-    // Re-render projects with new language — handled by projects.js
-    // (projects.js reads from I18n.t() at render time, no re-render needed)
+    // Disparar evento para componentes (Projects, HeroVisual, etc.)
+    window.dispatchEvent(
+      new CustomEvent("languageChange", { detail: { lang } })
+    );
 
     // Reinitialize Lucide icons after language change
     if (typeof lucide !== "undefined") {
