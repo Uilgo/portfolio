@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-igor-elias",
+  "version": "2.0.0",
+  "description": "Portfolio pessoal de Igor Elias - Desenvolvedor Fullstack",
+  "scripts": {
+    "build": "echo 'Static HTML site - no build needed'"
+  },
+  "keywords": [
+    "portfolio",
+    "fullstack",
+    "developer"
+  ],
+  "author": "Igor Elias",
+  "license": "MIT"
+}

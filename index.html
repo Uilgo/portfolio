@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script>
+        // Prevenir "flash" de tema claro
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- SEO Básico -->
+    <title>Igor Elias | Desenvolvedor Fullstack</title>
+    <meta name='description'
+        content='Igor Elias - Desenvolvedor Fullstack especializado em React, Vue, TypeScript, Supabase e soluções com IA estruturada.'>
+    <meta name='keywords'
+        content='Igor Elias, Desenvolvedor Fullstack, Frontend, Backend, React, Vue, Nuxt, TypeScript, Supabase, Inteligência Artificial, Desenvolvimento Web, Portfolio'>
+    <meta name='author' content='Igor Elias'>
+    <meta name='robots' content='index, follow'>
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property='og:type' content='website'>
+    <meta property='og:url' content='https://igorelias.vercel.app/'>
+    <meta property='og:title' content='Igor Elias | Desenvolvedor Fullstack'>
+    <meta property='og:description'
+        content='Desenvolvedor Fullstack especializado em criar soluções web modernas e escaláveis. Conheça meu portfólio e projetos.'>
+    <meta property='og:image' content='assets/images/igor-profiles.webp'>
+
+    <!-- Twitter Card -->
+    <meta property='twitter:card' content='summary_large_image'>
+    <meta property='twitter:url' content='https://igorelias.vercel.app/'>
+    <meta property='twitter:title' content='Igor Elias | Desenvolvedor Fullstack'>
+    <meta property='twitter:description'
+        content='Desenvolvedor Fullstack especializado em criar soluções web modernas e escaláveis. Conheça meu portfólio e projetos.'>
+    <meta property='twitter:image' content='assets/images/igor-profiles.webp'>
+
+    <link rel='icon' type='image/svg+xml' href='assets/images/favicon.svg'>
+
+    <!-- CSS Crítico Inline -->
+    <style>
+        :root {
+            --background: #f9fafb;
+            --background-card: #fff;
+            --foreground: #111827;
+            --foreground-secondary: #374151;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --text-base: 1rem;
+            --text-sm: .875rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --space-2: .5rem;
+            --space-3: .75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --radius-lg: .75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.25rem;
+            --radius-full: 9999px;
+            --transition-base: 200ms ease;
+            --z-header: 100
+        }
+
+        [data-theme=dark] {
+            --background: #0f172a;
+            --background-card: #1e293b;
+            --foreground: #f9fafb;
+            --foreground-secondary: #cbd5e1;
+            --primary: #3b82f6;
+            --border: #334155;
+            --border-light: #1e293b
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color .3s ease, color .3s ease
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-header);
+            background: var(--background-card);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            transition: all .3s ease
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 60px
+        }
+    </style>
+
+    <!-- Preload recursos críticos -->
+    <link rel='preload' href='assets/css/main.css' as='style'>
+    <link rel='preload' href='assets/images/igor-profiles.webp' as='image'>
+    <link rel='preload' href='assets/js/utils/icons.js' as='script'>
+
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+    </noscript>
+
+    <!-- CSS Único Consolidado - Carregamento síncrono -->
+    <link rel='stylesheet' href='assets/css/main.css?v=8'>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#hero" class="logo" aria-label="Igor Elias - Voltar ao início">IE</a>
+
+                <nav class="header-nav">
+                    <ul class="nav-links">
+                        <li><a href="#about" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                        <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Habilidades</a></li>
+                        <li><a href="#projetos" class="nav-link" data-i18n="nav.projects">Projetos</a></li>
+                        <li><a href="#contato" class="nav-link" data-i18n="nav.contact">Contato</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="lang-toggle" id="lang-toggle" aria-label="Change language">
+                        PT
+                    </button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                        <i data-lucide="sun" class="theme-icon theme-icon-light"></i>
+                        <i data-lucide="moon" class="theme-icon theme-icon-dark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero" aria-label="Seção principal de apresentação">
+            <div class="hero-background" aria-hidden="true"></div>
+            <canvas id="particles-canvas" class="particles-canvas" aria-hidden="true"></canvas>
+
+            <div class="container">
+
+
+                <div class="hero-grid">
+
+                    <!-- ── Coluna esquerda: texto ── -->
+                    <div class="hero-content-col">
+                        <h1 class="hero-title">
+                            <span class="hero-name" data-i18n="hero.name">Igor Elias</span>
+                            <span class="hero-tagline" id="typewriter"></span>
+                        </h1>
+
+                        <p class="hero-description" data-i18n="hero.description">
+                            <span class="hero-desc-1"></span>Transformo ideias em soluções digitais com Frontend
+                            moderno, Backend com Supabase e desenvolvimento assistido por IA.</span>
+                            <span class="hero-desc-2">Experiência em criar interfaces e sistemas completos que conectam
+                                tecnologia e experiência do usuário. 🚀</span>
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#projetos" class="btn btn-primary">
+                                <i data-lucide="folder-open"></i>
+                                <span data-i18n="hero.btn.projects">Ver Projetos</span>
+                            </a>
+                            <button class="btn btn-secondary" id="download-cv">
+                                <i data-lucide="download"></i>
+                                <span data-i18n="hero.btn.cv">Baixar CV</span>
+                            </button>
+                            <a href="#contato" class="btn btn-ghost">
+                                <i data-lucide="mail"></i>
+                                <span data-i18n="hero.btn.contact">Contato</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-social">
+                            <a href="https://github.com/Uilgo" target="_blank" rel="noopener noreferrer"
+                                class="social-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank"
+                                rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="mailto:igorelias.pro@gmail.com" class="social-link" aria-label="Email">
+                                <i data-lucide="mail"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /Coluna esquerda -->
+
+                    <!-- ── Coluna direita: visual interativo ── -->
+                    <div class="hv-col" aria-hidden="true">
+                        <div class="hv" id="hero-visual">
+
+                            <!-- Ambient glow -->
+                            <div class="hv__ambient"></div>
+
+                            <!-- SVG lines -->
+                            <svg class="hv__lines" id="hv-svg" aria-hidden="true">
+                                <defs>
+                                    <filter id="hv-line-glow" x="-30%" y="-30%" width="160%" height="160%">
+                                        <feGaussianBlur stdDeviation="2.5" result="blur" />
+                                        <feMerge>
+                                            <feMergeNode in="blur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <path class="hv__line" id="hv-line-tl" filter="url(#hv-line-glow)" />
+                                <path class="hv__line" id="hv-line-bl" filter="url(#hv-line-glow)" />
+                                <path class="hv__line" id="hv-line-tr" filter="url(#hv-line-glow)" />
+                                <path class="hv__line" id="hv-line-br" filter="url(#hv-line-glow)" />
+                                <!-- Traveling dots -->
+                                <circle class="hv__travel-dot" id="hv-tdot-tl" r="2.5">
+                                    <animateMotion dur="3s" repeatCount="indefinite" />
+                                </circle>
+                                <circle class="hv__travel-dot" id="hv-tdot-tr" r="2.5">
+                                    <animateMotion dur="3.5s" repeatCount="indefinite" />
+                                </circle>
+                                <circle class="hv__travel-dot" id="hv-tdot-bl" r="2.5">
+                                    <animateMotion dur="4s" repeatCount="indefinite" />
+                                </circle>
+                                <circle class="hv__travel-dot" id="hv-tdot-br" r="2.5">
+                                    <animateMotion dur="3.2s" repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+
+                            <!-- Globo / Core -->
+                            <div class="hv__globe" id="hv-globe">
+                                <div class="hv__globe-pulse"></div>
+                                <div class="hv__globe-ring hv__globe-ring--1"><span class="hv__globe-particle"></span>
+                                </div>
+                                <div class="hv__globe-ring hv__globe-ring--2"><span class="hv__globe-particle"></span>
+                                </div>
+                                <div class="hv__globe-ring hv__globe-ring--3"><span class="hv__globe-particle"></span>
+                                </div>
+                                <div class="hv__globe-core">
+
+                                </div>
+                            </div>
+
+                            <!-- Card TL: Stack -->
+                            <article class="hv__card hv__card--tl" id="hv-card-tl" data-line="hv-line-tl"
+                                data-tdot="hv-tdot-tl">
+                                <div class="hv__card-glow"></div>
+                                <div class="hv__drag-hint" aria-hidden="true">⠿</div>
+                                <h3 class="hv__card-title"><span class="hv__card-icon">⚡</span><span data-i18n="hero.card.stack.title">Stack</span></h3>
+                                <ul class="hv__card-list">
+                                    <li><span class="hv__dot hv__dot--active"></span>React / Next.js</li>
+                                    <li><span class="hv__dot hv__dot--active"></span>Vue / Nuxt.js</li>
+                                    <li><span class="hv__dot hv__dot--mid"></span>Node.js / Supabase</li>
+                                </ul>
+                            </article>
+
+                            <!-- Card BL: Entrego -->
+                            <article class="hv__card hv__card--bl" id="hv-card-bl" data-line="hv-line-bl"
+                                data-tdot="hv-tdot-bl">
+                                <div class="hv__card-glow"></div>
+                                <div class="hv__drag-hint" aria-hidden="true">⠿</div>
+                                <h3 class="hv__card-title"><span class="hv__card-icon">🎯</span><span data-i18n="hero.card.deliver.title">Entrego</span></h3>
+                                <ul class="hv__card-list">
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.deliver.1">UI responsiva</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.deliver.2">Código limpo</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.deliver.3">Prazo cumprido</span></li>
+                                </ul>
+                            </article>
+
+                            <!-- Card TR: Disponibilidade -->
+                            <article class="hv__card hv__card--tr" id="hv-card-tr" data-line="hv-line-tr"
+                                data-tdot="hv-tdot-tr">
+                                <div class="hv__card-glow"></div>
+                                <div class="hv__drag-hint" aria-hidden="true">⠿</div>
+                                <h3 class="hv__card-title"><span class="hv__card-icon">✅</span><span data-i18n="hero.card.status.title">Status</span><span
+                                        class="hv__badge" data-i18n="hero.card.status.badge">Open</span></h3>
+                                <ul class="hv__card-list">
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.status.1">Freelance</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.status.2">Remoto</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.status.3">Tempo integral</span></li>
+                                </ul>
+                            </article>
+
+                            <!-- Card BR: IA -->
+                            <article class="hv__card hv__card--br" id="hv-card-br" data-line="hv-line-br"
+                                data-tdot="hv-tdot-br">
+                                <div class="hv__card-glow"></div>
+                                <div class="hv__drag-hint" aria-hidden="true">⠿</div>
+                                <h3 class="hv__card-title"><span class="hv__card-icon">🧠</span><span data-i18n="hero.card.ia.title">IA Dev</span></h3>
+                                <ul class="hv__card-list">
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.ia.1">Código componentizado</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.ia.2">Arquitetura modular</span></li>
+                                    <li><span class="hv__check">✓</span><span data-i18n="hero.card.ia.3">Code review assistido</span></li>
+                                </ul>
+                            </article>
+
+                        </div>
+                    </div>
+                    <!-- /Coluna direita -->
+
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-indicator" aria-label="Rolar para a seção sobre">
+                <span data-i18n="hero.scroll">Role para baixo</span>
+                <div class="scroll-arrow" aria-hidden="true">
+                    <i data-lucide="chevron-down"></i>
+                </div>
+            </a>
+        </section>
+        <!-- About Section -->
+        <section class="section about-section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="about-title" data-i18n="about.title">Sobre Mim</h2>
+                    <p class="section-subtitle" data-i18n="about.subtitle">Conheça um pouco mais sobre minha trajetória e experiência</p>
+                </div>
+
+                <div class="about-bento">
+                    <!-- 1. Profile Hero Card -->
+                    <div class="about-card about-card--profile">
+                        <!-- Top: avatar + status badge -->
+                        <div class="about-profile-top">
+                            <div class="about-avatar-wrap">
+                                <img src="assets/images/igor-profiles.webp" alt="Igor Elias" class="about-avatar-img" width="195" height="195" loading="lazy">
+                                <div class="about-avatar-glow" aria-hidden="true"></div>
+                            </div>
+                            <div class="about-profile-top-right">
+                                <div class="about-status-badge">
+                                    <span class="about-status-dot"></span>
+                                    <span data-i18n="about.location.available">Disponível para projetos</span>
+                                </div>
+                                <h3 class="about-name">Igor Elias</h3>
+                                <p class="about-role" data-i18n="about.role" data-i18n-html>Desenvolvedor <strong>Fullstack</strong></p>
+                                <div class="about-quick-tags">
+                                    <span class="about-tag"><i data-lucide="map-pin"></i><span data-i18n="about.location.country">Brasil, Rio Grande do Norte</span></span>
+                                    <span class="about-tag"><i data-lucide="wifi"></i><span data-i18n="about.location.remote">Trabalho remoto</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Divider -->
+                        <div class="about-profile-divider"></div>
+                        <!-- Bio -->
+                        <div class="about-profile-bio">
+                            <p data-i18n="about.text.1" data-i18n-html>
+                                Sou <strong>Desenvolvedor Fullstack</strong> com foco em soluções práticas e eficientes. Utilizo IA como ferramenta de apoio para desenvolver sistemas de modo estruturado, componentizado e modularizado.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2. Timeline Card -->
+                    <div class="about-card about-card--timeline">
+                        <div class="about-card-title-wrap">
+                            <div class="about-card-icon about-card-icon--purple">
+                                <i data-lucide="calendar"></i>
+                            </div>
+                            <div>
+                                <h3 class="about-card-title" data-i18n="about.timeline.title">Timeline de Carreira</h3>
+                                <p class="about-card-subtitle" data-i18n="about.timeline.subtitle">Principais marcos profissionais</p>
+                            </div>
+                        </div>
+                        <div class="about-timeline">
+                            <div class="about-timeline-item">
+                                <div class="about-timeline-dot"></div>
+                                <div class="about-timeline-content">
+                                    <span class="about-timeline-year" data-i18n="about.timeline.2025">2025 - Presente</span>
+                                    <p class="about-timeline-text" data-i18n="about.timeline.2025.text">Desenvolvimento Fullstack moderno &amp; IA Estruturada e Modularizada</p>
+                                </div>
+                            </div>
+                            <div class="about-timeline-item">
+                                <div class="about-timeline-dot"></div>
+                                <div class="about-timeline-content">
+                                    <span class="about-timeline-year" data-i18n="about.timeline.2023">2023</span>
+                                    <p class="about-timeline-text" data-i18n="about.timeline.2023.text">Experiência prática prévia com No-Code e prototipagem ágil</p>
+                                </div>
+                            </div>
+                            <div class="about-timeline-item">
+                                <div class="about-timeline-dot"></div>
+                                <div class="about-timeline-content">
+                                    <span class="about-timeline-year" data-i18n="about.timeline.2021">2021</span>
+                                    <p class="about-timeline-text" data-i18n="about.timeline.2021.text">Início da trajetória tecnológica com JavaScript e o ecossistema Frontend</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Journey & Stack Card -->
+                    <div class="about-card about-card--journey">
+                        <div class="about-card-title-wrap">
+                            <div class="about-card-icon about-card-icon--blue">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                            <div>
+                                <h3 class="about-card-title" data-i18n="about.journey.title">Evolução &amp; Stack Atual</h3>
+                                <p class="about-card-subtitle" data-i18n="about.journey.subtitle">Arquitetura Fullstack High-Code &amp; IA</p>
+                            </div>
+                        </div>
+                        <ul class="about-journey-list">
+                            <li class="about-journey-item">
+                                <span class="about-journey-bullet">✦</span>
+                                <div class="about-journey-content">
+                                    <strong data-i18n="about.journey.1.title">Frontend Moderno:</strong>
+                                    <span data-i18n="about.journey.1.desc">Aplicações com React, Next.js, Vue, Nuxt e Tailwind CSS.</span>
+                                </div>
+                            </li>
+                            <li class="about-journey-item">
+                                <span class="about-journey-bullet">✦</span>
+                                <div class="about-journey-content">
+                                    <strong data-i18n="about.journey.2.title">Backend &amp; Banco de Dados:</strong>
+                                    <span data-i18n="about.journey.2.desc">APIs e regras em Node.js, PostgreSQL e Supabase.</span>
+                                </div>
+                            </li>
+                            <li class="about-journey-item">
+                                <span class="about-journey-bullet">✦</span>
+                                <div class="about-journey-content">
+                                    <strong data-i18n="about.journey.3.title">Arquitetura &amp; IA:</strong>
+                                    <span data-i18n="about.journey.3.desc">Sistemas componentizados, modulares e escaláveis com IA.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="about-stack-pills">
+                            <span class="about-stack-pill">React &middot; Next.js</span>
+                            <span class="about-stack-pill">Vue &middot; Nuxt</span>
+                            <span class="about-stack-pill">Node.js &middot; APIs</span>
+                            <span class="about-stack-pill">Supabase &middot; Postgres</span>
+                            <span class="about-stack-pill">Tailwind CSS</span>
+                            <span class="about-stack-pill" data-i18n="about.journey.pill.ia">IA Modular</span>
+                        </div>
+                    </div>
+
+                    <!-- 4. Values / Pillars Card -->
+                    <div class="about-card about-card--values">
+                        <div class="about-card-title-wrap">
+                            <div class="about-card-icon about-card-icon--emerald">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="about-card-title" data-i18n="about.values.title">Valores &amp; Princípios</h3>
+                                <p class="about-card-subtitle" data-i18n="about.values.subtitle">Diretrizes em cada linha de código</p>
+                            </div>
+                        </div>
+                        <div class="about-values-grid">
+                            <div class="about-val-item">
+                                <div class="about-val-icon about-val-icon--purple"><i data-lucide="heart"></i></div>
+                                <div>
+                                    <h4 data-i18n="about.value.empathy">Empatia</h4>
+                                    <p data-i18n="about.value.empathy.desc">Sempre penso na experiência do usuário final</p>
+                                </div>
+                            </div>
+                            <div class="about-val-item">
+                                <div class="about-val-icon about-val-icon--blue"><i data-lucide="users"></i></div>
+                                <div>
+                                    <h4 data-i18n="about.value.collaboration">Colaboração</h4>
+                                    <p data-i18n="about.value.collaboration.desc">Trabalho em equipe para alcançar os melhores resultados</p>
+                                </div>
+                            </div>
+                            <div class="about-val-item">
+                                <div class="about-val-icon about-val-icon--orange"><i data-lucide="graduation-cap"></i></div>
+                                <div>
+                                    <h4 data-i18n="about.value.learning">Aprendizado</h4>
+                                    <p data-i18n="about.value.learning.desc">Sempre em busca de novas tecnologias e conhecimentos</p>
+                                </div>
+                            </div>
+                            <div class="about-val-item">
+                                <div class="about-val-icon about-val-icon--yellow"><i data-lucide="star"></i></div>
+                                <div>
+                                    <h4 data-i18n="about.value.excellence">Excelência</h4>
+                                    <p data-i18n="about.value.excellence.desc">Compromisso com qualidade em cada linha de código</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="skills-title" data-i18n="skills.title">Habilidades &amp; Tecnologias
+                    </h2>
+                    <p class="section-subtitle" data-i18n="skills.subtitle">Tecnologias e ferramentas que utilizo para
+                        criar soluções modernas</p>
+                </div>
+
+                <!-- Card destaque — IA Estruturada -->
+                <div class="ia-highlight">
+                    <div class="ia-header">
+                        <div class="ia-icon">
+                            <i data-lucide="brain"></i>
+                        </div>
+                        <div class="ia-title-wrapper">
+                            <h3 data-i18n="skills.ia.title">IA Estruturada</h3>
+                            <span class="ia-badge">
+                                <i data-lucide="zap"></i> <span data-i18n="skills.ia.badge">Diferencial</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="ia-description" data-i18n="skills.ia.description">Desenvolvimento assistido por
+                        inteligência artificial</p>
+                    <p class="ia-text" data-i18n="skills.ia.text" data-i18n-html><strong>Abordagem única:</strong>
+                        Estruturo projetos corretamente utilizando IA
+                        como ferramenta de apoio no desenvolvimento componentizado e modular.</p>
+
+                    <div class="ia-features">
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="puzzle"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.1">Arquitetura Componentizada
+                                </div>
+                                <p data-i18n="skills.ia.feature.1.desc">Estruturação modular e escalável</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.2">Aprendizado Contínuo</div>
+                                <p data-i18n="skills.ia.feature.2.desc">Crescimento técnico constante</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="code-2"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.3">Code Review Assistido</div>
+                                <p data-i18n="skills.ia.feature.3.desc">Refatoração com suporte de IA</p>
+                            </div>
+                        </div>
+                        <div class="ia-feature">
+                            <div class="ia-feature-icon">
+                                <i data-lucide="refresh-cw"></i>
+                            </div>
+                            <div class="ia-feature-body">
+                                <div class="feature-title" data-i18n="skills.ia.feature.4">Workflow Integrado</div>
+                                <p data-i18n="skills.ia.feature.4.desc">IA no processo de desenvolvimento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de categorias de skills -->
+                <div class="skills-categories">
+                    <!-- Frontend -->
+                    <div class="skill-category skill-category-frontend">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--purple">
+                                <i data-lucide="monitor"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.frontend.title">Desenvolvimento Frontend</h3>
+                                <p data-i18n="skills.frontend.desc">Interfaces modernas e responsivas</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">React</span></div>
+                            <div class="skill-item"><span class="skill-name">Vue</span></div>
+                            <div class="skill-item"><span class="skill-name">Next.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Nuxt.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Tailwind CSS</span></div>
+                            <div class="skill-item"><span class="skill-name">TypeScript</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Backend & BaaS -->
+                    <div class="skill-category skill-category-backend">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--blue">
+                                <i data-lucide="database"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.backend.title">Backend &amp; BaaS</h3>
+                                <p data-i18n="skills.backend.desc">APIs, banco de dados e infraestrutura</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">Node.js</span></div>
+                            <div class="skill-item"><span class="skill-name">Supabase</span></div>
+                            <div class="skill-item"><span class="skill-name">Firebase</span></div>
+                            <div class="skill-item"><span class="skill-name">PostgreSQL</span></div>
+                            <div class="skill-item"><span class="skill-name">REST APIs</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Ferramentas Essenciais -->
+                    <div class="skill-category skill-category-tools">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon skill-icon--green">
+                                <i data-lucide="wrench"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="skills.tools.title">Ferramentas Essenciais</h3>
+                                <p data-i18n="skills.tools.desc">Workflow otimizado</p>
+                            </div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">Git/GitHub</span></div>
+                            <div class="skill-item"><span class="skill-name">Vercel</span></div>
+                            <div class="skill-item"><span class="skill-name">Figma</span></div>
+                            <div class="skill-item"><span class="skill-name">VS Code</span></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section id="projetos" class="proj-section" aria-label="Projetos">
+
+            <!-- ── Header intro (fullscreen) ── -->
+            <div id="proj-header" class="proj-header">
+
+                <!-- Badge -->
+                <div class="proj-hd-badge">
+                    <p class="proj-hd-badge__pill">
+                        <span class="proj-hd-badge__dot"></span>
+                        <span data-i18n="projects.badge">Trabalhos Selecionados</span>
+                    </p>
+                </div>
+
+                <!-- Título -->
+                <div class="proj-hd-title-wrap">
+                    <h2 class="proj-hd-title" id="projects-title">
+                        <span class="proj-hd-line1 block" data-i18n="projects.title.line1">Mais do que um portfólio.</span>
+                        <span class="proj-hd-line2 block" data-i18n="projects.title.line2">Soluções que entregam resultado.</span>
+                    </h2>
+                </div>
+
+                <!-- Subtítulo minimalista -->
+                <p class="proj-hd-sub" data-i18n="projects.subtitle">
+                    Aplicações completas desenvolvidas com arquitetura escalável e foco na experiência real do usuário.
+                </p>
+
+                <!-- Pills horizontais dos projetos -->
+                <div class="proj-hd-chips" id="proj-chips" role="list">
+                    <!-- Preenchido pelo JS -->
+                </div>
+
+                <!-- Scroll hint -->
+                <div id="proj-scroll-hint" class="proj-scroll-hint" aria-hidden="true">
+                    <span class="proj-scroll-hint__text" data-i18n="projects.scroll">Role para explorar</span>
+                    <span class="proj-scroll-hint__arrow">
+                        <i data-lucide="chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+            <!-- /Header intro -->
+
+            <!-- ── Body: sidebar dots + stage ── -->
+            <div id="proj-body" class="proj-body">
+                <div class="proj-inner">
+
+                    <!-- Sidebar dots (desktop) -->
+                    <div class="proj-dots-col" id="proj-sidebar">
+                        <!-- Track fixo -->
+                        <div id="proj-track-line" class="proj-track-line"></div>
+                        <!-- Linha animada -->
+                        <div id="proj-line-active" class="proj-line-active"></div>
+                        <!-- Dots preenchidos pelo JS -->
+                        <div id="proj-dots" class="proj-dots"></div>
+                    </div>
+
+                    <!-- Stage: cards sobrepostos -->
+                    <div class="proj-stage" id="proj-stage">
+                        <!-- Cards preenchidos pelo JS -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Body -->
+
+        </section>
+
+        <!-- Modal de preview desktop -->
+        <div id="proj-modal" class="proj-modal" role="dialog" aria-modal="true" aria-label="Preview do projeto" hidden>
+            <div class="proj-modal__backdrop"></div>
+            <div class="proj-modal__content">
+                <button class="proj-modal__close" id="proj-modal-close" aria-label="Fechar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;display:block;"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <img id="proj-modal-img" src="" alt="Preview do projeto" class="proj-modal__img" />
+            </div>
+        </div>
+
+        <!-- Bottom Sheet mobile -->
+        <div id="proj-bs" class="proj-bs" role="dialog" aria-modal="true" aria-label="Preview do projeto" hidden>
+            <div class="proj-bs__backdrop"></div>
+            <div class="proj-bs__sheet">
+                <div class="proj-bs__handle" id="proj-bs-handle"></div>
+                <div class="proj-bs__body">
+                    <img id="proj-bs-img" src="" alt="Preview do projeto" class="proj-bs__img" />
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Contact Section -->
+        <section class="section contact-section" id="contato" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" id="contact-title" data-i18n="contact.title">Vamos Conversar?</h2>
+                    <p class="section-subtitle" data-i18n="contact.subtitle">Estou sempre aberto a novas oportunidades e
+                        projetos interessantes</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3 data-i18n="contact.info.title">Informações de Contato</h3>
+
+                        <div class="contact-cards">
+                            <a href="mailto:igorelias.pro@gmail.com" class="contact-card contact-card-blue">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.email">Email</h4>
+                                    <p>igorelias.pro@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/5584996551792" target="_blank" rel="noopener noreferrer"
+                                class="contact-card contact-card-green">
+                                <div class="contact-card-icon">
+                                    <i class="si si-whatsapp"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.whatsapp">WhatsApp</h4>
+                                    <p>(84) 99655-1792</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank"
+                                rel="noopener noreferrer" class="contact-card contact-card-blue">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="linkedin"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.linkedin">LinkedIn</h4>
+                                    <p>/in/igor-elias-de-lima</p>
+                                </div>
+                            </a>
+
+                            <div class="contact-card contact-card-purple">
+                                <div class="contact-card-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div class="contact-card-content">
+                                    <h4 data-i18n="contact.location">Localização</h4>
+                                    <p data-i18n="contact.location.city">Santa Maria - RN, Brasil</p><small
+                                        data-i18n="contact.location.remote">Disponível para trabalho remoto</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="availability-card">
+                            <div class="availability-header">
+                                <div class="availability-dot-large"></div>
+                                <p data-i18n="contact.available">Disponível para novos projetos</p>
+                            </div>
+                            <p class="availability-text" data-i18n="contact.available.text">Atualmente aceitando
+                                freelances e oportunidades de trabalho em
+                                desenvolvimento Frontend e Fullstack.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <h3 data-i18n="contact.form.title">Envie uma Mensagem</h3>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="nome"><span data-i18n="contact.form.name">Nome</span> *</label>
+                                <input type="text" id="nome" name="nome" required
+                                    data-i18n="contact.form.name.placeholder" placeholder="Seu nome completo">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email"><span data-i18n="contact.form.email">Email</span> *</label>
+                                <input type="email" id="email" name="email" required
+                                    data-i18n="contact.form.email.placeholder" placeholder="seu.email@exemplo.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipo" data-i18n="contact.form.type">Tipo de Projeto</label>
+                                <select id="tipo" name="tipo">
+                                    <option value="" data-i18n="contact.form.type.placeholder">Selecione o tipo de
+                                        projeto</option>
+                                    <option value="fullstack" data-i18n="contact.form.type.fullstack">Aplicação Web
+                                        Fullstack</option>
+                                    <option value="frontend" data-i18n="contact.form.type.frontend">Desenvolvimento
+                                        Frontend</option>
+                                    <option value="outro" data-i18n="contact.form.type.other">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem"><span data-i18n="contact.form.message">Mensagem</span> *</label>
+                                <textarea id="mensagem" name="mensagem" rows="4" required
+                                    data-i18n="contact.form.message.placeholder"
+                                    placeholder="Descreva seu projeto ou dúvida..." maxlength="1000"></textarea>
+                                <span class="char-count"><span id="char-count">0</span>/1000</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                                    <i data-lucide="send"></i>
+                                    <span class="btn-text" data-i18n="contact.form.submit">Enviar Mensagem</span>
+                                    <span class="btn-loading" style="display: none;">
+                                        <i data-lucide="loader-2"></i>
+                                        <span data-i18n="contact.form.sending">Enviando...</span>
+                                    </span>
+                                </button>
+                                <a href="https://wa.me/5584996551792?text=Olá%20Igor,%20vim%20do%20seu%20portfólio"
+                                    target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp"
+                                    aria-label="Enviar mensagem via WhatsApp">
+                                    <i class="si si-whatsapp"></i>
+                                    <span data-i18n="contact.form.whatsapp">WhatsApp</span>
+                                </a>
+                            </div>
+                        </form>
+
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <div class="success-icon">
+                                <i data-lucide="check-circle"></i>
+                            </div>
+                            <p><strong data-i18n="contact.form.success.title">Mensagem enviada com sucesso!</strong></p>
+                            <p data-i18n="contact.form.success.text">Retornarei o contato em breve. Obrigado!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="current-year"></span> Igor Elias. <span data-i18n="footer.rights">Todos os direitos
+                        reservados.</span></p>
+                <div class="footer-social">
+                    <a href="https://github.com/Uilgo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/igor-elias-de-lima/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="mailto:igorelias.pro@gmail.com" aria-label="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Sistema de ícones local (substitui Lucide) -->
+    <script src="assets/js/utils/icons.js?v=2"></script>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils/i18n.js?v=2" defer></script>
+    <script src="assets/js/utils/theme.js?v=2" defer></script>
+    <script src="assets/js/utils/dom.js?v=2" defer></script>
+    <script src="assets/js/components/typewriter.js?v=2" defer></script>
+    <script src="assets/js/components/scroll.js?v=2" defer></script>
+    <script src="assets/js/components/form.js?v=2" defer></script>
+    <script src="assets/js/components/particles.js?v=2" defer></script>
+    <script src="assets/js/components/hero-visual.js?v=1" defer></script>
+    <script src="assets/js/components/projects.js?v=1" defer></script>
+    <script src="assets/js/main.js?v=2" defer></script>
+
+    <!-- Initialize Icons -->
+    <script>
+        // Inicializar ícones quando o DOM estiver pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createIcons);
+        } else {
+            createIcons();
+        }
+    </script>
+</body>
+
+</html>
